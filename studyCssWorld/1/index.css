@@ -1,0 +1,21 @@
+p[title = "abc"] {
+  color: red;
+}
+
+
+/* 匹配属性值以指定值开头的每个元素。 */
+p[title ^= "title"] {
+  opacity: .5;
+}
+
+/* 匹配属性值以指定值结尾的每个元素。 */
+
+p[title $= "title"] {
+  font-size: 25px;
+}
+
+
+/* 包含指定值 */
+p[title *= "title"] {
+  color: blue;
+}
