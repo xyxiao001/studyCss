@@ -19,3 +19,39 @@ p[title $= "title"] {
 p[title *= "title"] {
   color: blue;
 }
+
+.wrapper {
+  width: 240px;
+  background-color: red;
+  margin-bottom: 40px;
+}
+
+.wrapper a {
+  display: block;
+  margin: 0 10px;
+  padding: 10px 20px;
+  border-bottom: 1px solid #b70000;
+  color: white;
+}
+
+.wrapper a:last-child {
+  border: none;
+}
+
+.w a {
+  width: 100%;
+}
+
+.box {
+  text-align: center;
+  width: 200px;
+  background: red;
+  color: white;
+
+}
+
+.box p {
+  display: inline-block;
+  margin-bottom: 40px;
+  text-align: left;
+}
