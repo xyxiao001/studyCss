@@ -1,3 +1,7 @@
+body {
+  padding-bottom: 100px;
+}
+
 p[title = "abc"] {
   color: red;
 }
@@ -54,4 +58,29 @@ p[title *= "title"] {
   display: inline-block;
   margin-bottom: 40px;
   text-align: left;
+}
+
+.ao, .tu {
+  display: inline-block;
+  width: 0;
+  font-size: 14px;
+  line-height: 18px;
+  margin: 35px;
+}
+
+.ao::after {
+  content: "love 你 love";
+  outline: 2px solid red;
+  color: black;
+}
+
+.tu {
+  /* 把文本方向设置为“从右向左”： */
+  direction: rtl;
+}
+
+.tu:after {
+  content: "你 love 你";
+  outline: 2px solid red;
+  color: black;
 }
