@@ -1,3 +1,13 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  padding: 50px;
+}
+
+
 p[title = "abc"] {
   color: red;
 }
@@ -54,4 +64,36 @@ p[title *= "title"] {
   display: inline-block;
   margin-bottom: 40px;
   text-align: left;
+}
+
+.box-s section {
+  width: 100px;
+  height: 100px;
+  background-color: red;
+  padding: 20px;
+  margin: 20px;
+  border: 10px solid blue;
+}
+
+.content-box {
+  box-sizing: content-box;
+}
+
+.padding-box {
+  box-sizing: unset;
+}
+
+.border-box {
+  box-sizing: border-box;
+}
+
+.box-s .father {
+  width: 100px;
+  height: 100px;
+  background-color: red;
+}
+
+.box-s .son {
+  border: 5px solid blue;
+  padding: 20px;
 }
