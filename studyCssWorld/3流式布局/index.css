@@ -6,3 +6,63 @@
 body {
   padding: 30px;
 }
+
+.box {
+  position: relative;
+  width: 150px;
+  height: 150px;
+  padding: 20px;
+  background-color: red;
+  color: white;
+}
+
+.test1 {
+  height: 100%;
+  background-color: blue;
+}
+
+.test2 {
+  position: absolute;
+  top: 0;
+  left: 100%;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+}
+
+.slide input {
+  position: absolute;
+  width: 0;
+  height: 0;
+  visibility: hidden;
+  opacity: 0;
+}
+
+.slide-more {
+  max-height: 0px;
+  overflow: hidden;
+  transition: max-height .5s;
+  background-color: beige;
+}
+
+.slide input:checked ~ .slide-more {
+  max-height: 100px;
+}
+
+.slide label {
+  cursor: pointer;
+  color: aqua;
+
+}
+
+.slide .check-out {
+  display: none;
+}
+
+.slide input:checked ~ .check-in {
+  display: none;
+}
+
+.slide input:checked ~ .check-out {
+  display: block;
+}
