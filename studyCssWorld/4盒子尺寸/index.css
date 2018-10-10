@@ -6,3 +6,28 @@
 body {
   padding: 30px;
 }
+
+.weilei1 p {
+  font-size: 12px;
+  color: red;
+}
+
+p.counter {
+  font-size: 25px;
+  counter-reset: jishu1 1;
+  counter-increment: jishu1;
+}
+
+p.counter:before {
+  content: counter(jishu1);
+  counter-increment: jishu1;
+}
+
+p.add {
+  counter-increment: jishu1;
+}
+
+p.add:before {
+  content: counter(jishu1);
+  counter-increment: jishu1;
+}
