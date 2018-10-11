@@ -31,3 +31,13 @@ p.add:before {
   content: counter(jishu1);
   counter-increment: jishu1;
 }
+
+.reset {
+  padding-left: 20px;
+  counter-reset: wangxiaoer;
+}
+
+.coun::before {
+  content: counters(wangxiaoer, '-') '. ';
+  counter-increment: wangxiaoer;
+}
