@@ -18,6 +18,7 @@ p.counter {
   counter-increment: jishu1;
 }
 
+
 p.counter:before {
   content: counter(jishu1);
   counter-increment: jishu1;
@@ -40,4 +41,28 @@ p.add:before {
 .coun::before {
   content: counters(wangxiaoer, '-') '. ';
   counter-increment: wangxiaoer;
+}
+
+
+.line {
+  background-color: blue;
+  /* overflow:auto; */
+}
+
+.line span {
+  display: inline;
+  padding: 10px;
+  background-color: red;
+}
+.test1 {
+  margin: 30px 0;
+  font-size: 12px;
+}
+
+.test1 a:before {
+  content: "";
+  font-size: 0;
+  padding: 10px 3px 1px;
+  margin-left: 1px;
+  border-left: 1px solid gray;
 }
