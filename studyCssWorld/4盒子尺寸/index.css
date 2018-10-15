@@ -66,3 +66,25 @@ p.add:before {
   margin-left: 1px;
   border-left: 1px solid gray;
 }
+
+h3 {
+  position: fixed;
+  line-height: 30px;
+  font-size: 14px;
+  top: 0px;
+}
+
+h3 span {
+  padding-top: 30px;
+}
+
+.box {
+  width: 200px;
+  height: 200px;
+  background-color: black;
+  color: white;  
+}
+
+.padding1 {
+  padding: 25% 50%;
+}
