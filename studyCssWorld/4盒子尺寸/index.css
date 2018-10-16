@@ -83,8 +83,59 @@ h3 span {
   height: 200px;
   background-color: black;
   color: white;  
+  margin-bottom: 50px;
 }
 
 .padding1 {
   padding: 25% 50%;
+}
+
+
+.demo {
+  margin: 1em 0;
+}
+
+.demo i {
+  vertical-align: middle;
+  margin: 0 20px;
+  transition: opacity .2s ease-out;
+}
+
+.demo i:hover {
+  opacity: .5;
+}
+
+.icon-menu1 {
+  display: inline-block;
+  width: 140px;
+  height: 10px;
+  padding: 35px 0;
+  border-top: 10px solid;
+  border-bottom: 10px solid;
+  background-color: currentColor;
+  background-clip: content-box;
+}
+
+.icon-menu2 {
+  display: inline-block;
+  width: 100px; 
+  height: 100px;
+  padding: 10px;
+  border: 10px solid;    
+  border-radius: 50%;
+  background-color: currentColor;
+  background-clip: content-box;
+}
+
+.demo-text1 {
+  width: 300px;
+}
+
+.demo-text1 img {
+  float: left;
+  width: 100px;
+}
+
+.demo-text1 p {
+  margin-left: 120px;
 }
