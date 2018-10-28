@@ -159,3 +159,67 @@ h3 span {
   background-color: red;
   margin: auto;
 }
+
+.z {
+  width: 300px;
+  height: 100px;
+  background-color: red;
+}
+
+.z-s {
+  width: 10px;
+  height: 20px;
+  padding: 10%;
+  background-color: black;
+}
+
+.icon-menu1-1 {
+  display: inline-block;
+  width: 120px;
+  height: 20px;
+  border-top: 60px double;
+  border-bottom: 20px solid;
+}
+.upload {
+  margin-top: 50px;
+  position: relative;
+  display: inline-block;
+  width: 200px;
+  height: 200px;
+  border: 2px dashed;
+  color: gray;
+  cursor: pointer;
+  transition: color .25s;
+}
+
+.upload::after {
+  position: absolute;
+  content: "";
+  width: 40px;
+  border-top: 4px solid;
+  top: 50%;
+  left: 50%;
+  margin-top: -2px;
+  margin-left: -20px;
+}
+
+.upload::before {
+  position: absolute;
+  content: "";
+  height: 40px;
+  border-left: 4px solid;
+  top: 50%;
+  left: 50%;
+  margin-left: -2px;
+  margin-top: -20px;
+}
+.upload:hover {
+  color: steelblue;
+}
+
+.san-jiao {
+  display: inline-block;
+  width: 0;
+  border: 10px solid;
+  border-color: #f30 transparent transparent;
+}
