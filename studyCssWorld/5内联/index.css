@@ -17,3 +17,35 @@ body {
   vertical-align: top;
 
 }
+
+.test2 {
+  line-height: 32px;
+  background-color: blue;
+}
+
+.test2 span {
+  font-size: 24px;
+  line-height: 32px;
+}
+
+.test3 {
+  height: 32px;
+  line-height: 32px;
+  background-color: red;
+}
+
+.test2 span {
+  font-size: 24px;
+}
+
+.test4 {
+  line-height: 32px;
+  background-color: red;
+  margin-top: 30px;
+}
+
+.test4 span {
+  font-size: 24px;
+  line-height: 32px;
+  vertical-align: top;
+}
