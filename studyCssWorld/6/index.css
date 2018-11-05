@@ -6,3 +6,82 @@
 body {
   padding: 30px;
 }
+
+.title {
+  margin: 20px 0;
+  color: gray;
+}
+
+::-webkit-scrollbar { /* 血槽宽度 */ 
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-thumb { /* 拖动条 */
+  background-color: rgba(0,0,0,.3);
+  border-radius: 6px;
+}
+::-webkit-scrollbar-track {
+  background-color: #ddd;
+  border-radius: 6px;
+}
+/* 背景槽 */
+
+.test1 {
+  width: 200px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.test2 {
+  width: 200px;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.box-list {
+  width: 200px;
+  height: 200px;
+  font-size: 30px;
+  overflow: hidden;
+}
+
+.box-item {
+  position: relative;
+  height: 100%;
+  text-align: center;
+  background-color:gray;
+}
+
+#item1 {
+  background: red;
+}
+
+#item2 {
+  background: blue;
+}
+
+#item3 {
+  background: gray;
+}
+
+#item4 {
+  background: yellow;
+}
+
+.box-item input {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 1px;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  clip: rect(0 0 0 0);
+}
+
+label {
+  cursor: pointer;
+}
