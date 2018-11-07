@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>test art</title>
+</head>
+<body>
+  <div id="test"></div>
+  <script src="https://unpkg.com/art-template@4.13.1/lib/template-web.js"></script>
+  <script id="tpl-user" type="text/html">
+    {{if user}}
+    <p>{{user.name}}</p>
+  {{/if}}
+  </script>
+  <script type="text/javascript">
+    var str = '小米/n我们/n2'
+    var html = template('tpl-user', {
+      user: {
+        name: str
+      }
+    })
+    document.getElementById('test').innerHTML = html
+  </script>
+</body>
+</html>
