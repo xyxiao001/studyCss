@@ -16,11 +16,14 @@
   </script>
   <script type="text/javascript">
     var str = '小米/n我们/n2'
+    console.log(str)
     var html = template('tpl-user', {
       user: {
         name: str
       }
     })
+    html = html.replace(/\/n/g, '<br />')
+    console.log(html)
     document.getElementById('test').innerHTML = html
   </script>
 </body>
