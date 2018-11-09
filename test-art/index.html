@@ -1,30 +1,209 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>test art</title>
 </head>
+
 <body>
   <div id="test"></div>
+  <a href="javascript:preview1()">打印</a>
+  <div id="test2"></div>
   <script src="https://unpkg.com/art-template@4.13.1/lib/template-web.js"></script>
   <script id="tpl-user" type="text/html">
     {{if user}}
     <p>{{user.name}}</p>
   {{/if}}
   </script>
+
+  <script id="test-print" type="text/html">
+    <div>
+      <style>
+        p {
+          margin: 0;
+        }
+
+        .main {
+          position: relative;
+          font-size: 12px;
+          font-family: '微软雅黑';
+        }
+
+        .name img {
+          width: 12px;
+          margin-right: 6px;
+        }
+
+
+        .overview {
+          width: 200mm;
+          padding: 0mm 5mm;
+          position: relative;
+        }
+
+        .overview p {
+          margin: 0;
+        }
+
+        .overview .content {
+          padding: 20px 8mm 0 8mm;
+        }
+
+        .overview .summary .title {
+          font-size: 20px;
+          color: #328BAD;
+          margin-bottom: 10px;
+        }
+        .title .title-mark {
+          border: solid 2px #328BAD;
+          margin-right: 10px;
+        }
+        .overview .summary .sub-title {
+          font-size: 14px;
+          color: #2B354A;
+          margin-bottom: 5px;
+        }
+
+        .overview .summary .disease-name {
+          margin-bottom: 5px;
+        }
+
+        .overview .result .detail {
+          margin-top: 20px;
+          margin-bottom: 10px;
+          overflow: hidden;
+        }
+
+        .overview .result .advice {
+          white-space: pre-line;
+        }
+
+        .overview .result .name {
+          width: 100%;
+          color: #328BAD;
+          height: 30px;
+          font-size: 16px;
+          padding-left: 17px;
+          margin-bottom: 5px;
+          border-bottom: solid 1px #D8E7EF;
+        }
+
+        .overview .result .exception {
+          margin-bottom: 10px;
+        }
+
+        .overview .result .exception p {
+          margin-bottom: 2px;
+        }
+
+        .overview .footer {
+          margin-top: 100px;
+          padding-bottom: 5px;
+          border-bottom: 1px dashed #000;
+          width: 200mm;
+        }
+
+        .overview .footer .sign {
+          margin-left: 25%;
+          overflow: hidden;
+        }
+
+        .overview .footer .sign p {
+          float: left;
+          width: 33%;
+        }
+
+      </style>
+      <div class="main">
+        <section>
+          {{if sumDiagnosis.detailList.length > 0}}
+          <section class="overview">
+            <div class="content">
+              <div class="summary">
+                <p class="title">
+                  <span class="title-mark"></span>
+                  总检报告
+                </p>
+                <p class="sub-title">体检结论及健康建议</p>
+                {{each sumDiagnosis.detailList result index}}
+                <p class="disease-name">（{{index + 1}}）{{result.diseaseName}}</p>
+                {{/each}}
+              </div>
+              {{each sumDiagnosis.detailList result}}
+              <div class="result">
+                <div class="detail">
+                  <ul class="name">
+                    <li>{{result.diseaseName}}</li>
+                  </ul>
+                  <div class="advice">
+                    <p>{{result.suggestion}}</p>
+                  </div>
+                </div>
+              </div>
+              {{/each}}
+            </div>
+            <div class="footer">
+              <div class="sign">
+                <p>
+                  <label>审核医生：{{sumDiagnosis.auditStaffName}}</label>
+                </p>
+                <p>
+                  <label>总检医生：{{sumDiagnosis.staffName}}</label>
+                </p>
+                <p>
+                  <label>总检日期：{{sumDiagnosis.gmtCreatedStr}}</label>
+                </p>
+              </div>
+            </div>
+          </section>
+          {{/if}}
+        </section>
+      </div>
+    </div>
+  </script>
+  <script src="./LodopFuncs.js"></script>
+  <script src="./test.js"></script>
+
   <script type="text/javascript">
-    var str = '小米/n我们/n2'
-    console.log(str)
-    var html = template('tpl-user', {
-      user: {
-        name: str
-      }
-    })
-    html = html.replace(/\/n/g, '<br />')
-    console.log(html)
-    document.getElementById('test').innerHTML = html
+    // var str = '小米/n我们/n2好像真的是这样子的啊'
+    // console.log(str)
+    // var html = template('tpl-user', {
+    //   user: {
+    //     name: str
+    //   }
+    // })
+    // html = html.replace(/\/n/g, '<br />')
+    // console.log(html)
+    // document.getElementById('test').innerHTML = html
+
+
+    let data = JSON.stringify(testJson.data)
+    data = data.replace(/\r?\\n/g, '<br />')
+    var html2 = template('test-print', JSON.parse(data));
+    html2 = html2.replace(/&#60;br \/&#62;/g, '<br />')
+    console.log(html2);
+    document.getElementById('test2').innerHTML = html2
+
+    // 打印
+    var LODOP;
+    function preview1() {	
+      show1();	
+      LODOP.PREVIEW();	
+    };
+
+    function show1() {
+      LODOP=getLodop();  
+      LODOP.PRINT_INIT("测试打印");
+      LODOP.SET_PRINT_STYLE("FontSize",18);
+      LODOP.SET_PRINT_STYLE("Bold",1);
+      LODOP.ADD_PRINT_HTM('25mm', 0, 'BottomMargin:2mm', 'BottomMargin:10mm', document.getElementById('test2').innerHTML);
+      // LODOP.ADD_PRINT_HTM(0, 0, 450, 900, document.getElementById('test2').innerHTML);
+    }
+
   </script>
 </body>
+
 </html>
