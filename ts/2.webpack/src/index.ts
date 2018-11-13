@@ -122,5 +122,4 @@ console.log(getUserInfo(list, '1'))
 // }
 
 let user = 1;
-
 // console.log(user.name);
