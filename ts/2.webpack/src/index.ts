@@ -116,10 +116,14 @@ console.log(getUserInfo(list, '1'))
 
 
 
-// let user = {
-//   name: '小明',
-//   age: 15,
-// }
+let user = {
+  name: '小明',
+  age: 15,
+}
 
-let user = 1;
-// console.log(user.name);
+console.log(user.name);
+
+import Down = require('./2');
+
+console.log(new Down('234', false))
+console.log(new Down('24', true))

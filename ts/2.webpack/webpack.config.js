@@ -9,9 +9,15 @@ module.exports = {
   devtool: "source-map",
   module: {
     rules: [
-      { test: /\.tsx?$/, loader: "ts-loader" },
+      {
+         test: /\.tsx?$/,
+         loader: "ts-loader",
+      },
       { test: /\.js$/, loader: "source-map-loader" }
     ],
+  },
+  resolve: {
+    extensions: ['.js', '.json', '.ts']
   },
   devServer: {
     compress: true,
