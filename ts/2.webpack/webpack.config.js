@@ -4,7 +4,7 @@ module.exports = {
   mode: 'development',
   entry: "./src/index.ts",
   output: {
-    filename: "./dist/build.js",
+    filename: "./dist/index.js",
   },
   devtool: "source-map",
   module: {
