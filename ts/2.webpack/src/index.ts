@@ -2,20 +2,36 @@ const sum = (a:number, b:number):number => a + b
 sum(5, 5)
 
 // 我们定义一个图片裁剪插件
+
+// 默认接口数据
 interface CropInterface {
   dom: HTMLElement;
   img: string;
   imgDom: HTMLElement;
   width: number;
   height: number;
+  loadImg(): void;
+  getCropData():void;
 }
 
-class Crop implements CropInterface {
+// 坐标接口
+interface Axis {
+  imgX: number;
+  imgY: number;
+  cropX: number
+  cropY: number;
+}
+
+class Crop implements CropInterface, Axis {
   dom: HTMLElement;
   img: string;
   imgDom: HTMLImageElement;
   width: number;
   height: number;
+  imgX: number;
+  imgY: number;
+  cropX: number;
+  cropY: number;
 
   constructor(dom: HTMLElement,) {
     this.dom = dom;
@@ -56,8 +72,8 @@ class Crop implements CropInterface {
 }
 
 
-const imgDom = document.createElement('section');
+const cropDom = document.createElement('section');
 
-const imgCrop = new Crop(imgDom);
+const imgCrop = new Crop(cropDom);
 
 console.log(imgCrop);

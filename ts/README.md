@@ -19,7 +19,9 @@
 #### ts给js添加了静态类型， 那静态类型的优势和劣势
 ##### 优势
 1. 静态类型检查允许我们在程序没有运行之前就可以确定我们所设定的确定性是否是对的。一旦有违反这些既定规则的行为，它能在运行之前就发现，而不是在运行时。
+
 ![](https://user-images.githubusercontent.com/15681693/48350355-dca9eb00-e6c1-11e8-85b3-15db7989a9f9.png)
 
 2. 代码自带注释功能, 即使没有注释， 也可以很清楚的看明白， 每个函数的参数类型，和函数的返回值，能够大致明白代码的意思。
-![](https://user-images.githubusercontent.com/15681693/48353138-a40e0f80-e6c9-11e8-8157-4ea1142850da.png)
+
+![](https://user-images.githubusercontent.com/15681693/48388155-54fcc480-e733-11e8-99b5-a0f56bd1516b.png)
