@@ -28,3 +28,11 @@ console.log(getUserInfo(list2, '1'))
 import Down from './2'
 
 console.log(new Down('111', false))
+
+import Arrs from '../lib/test'
+Arrs.push({
+  id: '1',
+  name: '1'
+})
+Arrs.push(1)
+console.log(Arrs)

@@ -1,0 +1,7 @@
+{
+  "name": "test",
+  "author": "xyxiao",
+  "version": "1.0.0",
+  "main": "./build/index.js",
+  "types": "./src/index.d.ts"
+}
