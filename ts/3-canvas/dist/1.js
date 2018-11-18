@@ -7,10 +7,12 @@
   mid：像素点R、G、B三色中的中间者
   min：像素点R、G、B三色中的最小者
   ratio_max：最大的颜色所占比率
-  ratio_max_mid：最大的颜色和中间颜色所占的比率
+  ratio_max_mid：最大的颜色和中间颜色 合成颜色所占的比率
 
   这六种颜色在ps中默认比例为：
-
+  y = r + g
+  q = g + b
+  z = r + b
   redRadio = 40%;
   yellowRadio = 60%;
   greenRadio = 40%;
@@ -45,8 +47,16 @@ const addImg = (img) => {
 };
 addImg('http://cdn.xyxiao.cn/bg10.jpg').then((info) => {
     console.log(info);
+    let start = 0;
+    let end = 0;
+    start = window.performance.now();
     grayscaleImgWei(info);
+    end = window.performance.now();
+    console.log(`简单的取平均值的黑白算法耗时${end - start}ms`);
+    start = window.performance.now();
     grayscaleImgPS(info);
+    end = window.performance.now();
+    console.log(`ps黑白算法 ${end - start}ms`);
 }).catch((error) => {
     console.log(error);
 });
@@ -92,6 +102,9 @@ const grayscaleImgPS = (obj) => {
     let ratioMax = 0;
     let ratioMaxMid = 0;
     // 红、黄、 绿、 青、 蓝、紫六个通道
+    // y = r + g
+    // q = g + b
+    // z = r + b
     let ratio = [0.4, 0.6, 0.4, 0.6, 0.2, 0.8];
     for (let i = 0; i < obj.width * obj.height * 4; i += 4) {
         r = psData.data[i];
