@@ -45,21 +45,47 @@ const addImg = (img) => {
         info.dom = imgDom;
     });
 };
-addImg('http://cdn.xyxiao.cn/bg10.jpg').then((info) => {
-    console.log(info);
-    let start = 0;
-    let end = 0;
-    start = window.performance.now();
-    grayscaleImgWei(info);
-    end = window.performance.now();
-    console.log(`简单的取平均值的黑白算法耗时${end - start}ms`);
-    start = window.performance.now();
-    grayscaleImgPS(info);
-    end = window.performance.now();
-    console.log(`ps黑白算法 ${end - start}ms`);
-}).catch((error) => {
-    console.log(error);
-});
+const show = (src) => {
+    addImg(src).then((info) => {
+        console.log(info);
+        let start = 0;
+        let end = 0;
+        start = window.performance.now();
+        grayscaleImgWei(info);
+        end = window.performance.now();
+        console.log(`简单的取平均值的黑白算法耗时${end - start}ms`);
+        start = window.performance.now();
+        grayscaleImgPS(info);
+        end = window.performance.now();
+        console.log(`ps黑白算法 ${end - start}ms`);
+    }).catch((error) => {
+        console.log(error);
+    });
+};
+const uploadImg = (e) => {
+    //上传图片
+    var file = e.target.files[0];
+    if (!/\.(gif|jpg|jpeg|png|bmp|GIF|JPG|PNG)$/i.test(e.target.value)) {
+        alert("图片类型必须是.gif,jpeg,jpg,png,bmp中的一种");
+        return false;
+    }
+    var reader = new FileReader();
+    reader.onload = (e) => {
+        let data;
+        data = window.URL.createObjectURL(new Blob([e.target.result]));
+        let img1 = document.querySelector('#img1');
+        img1.src = data;
+        let img2 = document.querySelector('#img2');
+        img2.src = data;
+        show(data);
+    };
+    // 转化为base64
+    // reader.readAsDataURL(file)
+    // 转化为blob
+    reader.readAsArrayBuffer(file);
+};
+document.querySelector('#file').addEventListener('change', uploadImg);
+show('http://cdn.xyxiao.cn/bg10.jpg');
 const grayscaleImgWei = (obj) => {
     const canvas = document.createElement('canvas');
     const ctx = canvas.getContext('2d');
@@ -80,7 +106,8 @@ const grayscaleImgWei = (obj) => {
         weiData.data[i + 2] = gray;
     }
     ctx.putImageData(weiData, 0, 0);
-    document.querySelector('.wei').appendChild(canvas);
+    document.querySelector('.wei .img').innerHTML = '';
+    document.querySelector('.wei .img').appendChild(canvas);
 };
 const grayscaleImgPS = (obj) => {
     const canvas = document.createElement('canvas');
@@ -140,5 +167,6 @@ const grayscaleImgPS = (obj) => {
         psData.data[i + 2] = gray;
     }
     ctx.putImageData(psData, 0, 0);
-    document.querySelector('.ps').appendChild(canvas);
+    document.querySelector('.ps .img').innerHTML = '';
+    document.querySelector('.ps .img').appendChild(canvas);
 };

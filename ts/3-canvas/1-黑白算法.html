@@ -14,19 +14,23 @@
     justify-content: flex-start;
   }
 
-  section {
+  main > section {
     padding: 30px 30px
   }
   img {
-    width: 400px;
+    max-width: 400px;
   }
 
   canvas {
-    width: 400px;
+    max-width: 400px;
   }
 
   #img2 {
     filter: grayscale(100%);
+  }
+
+  .upload {
+    width: 100%;
   }
 </style>
 
@@ -34,7 +38,7 @@
   <main>
     <section>
       <p>原图</p>
-      <img src="http://cdn.xyxiao.cn/bg10.jpg" id="img" alt="">
+      <img src="http://cdn.xyxiao.cn/bg10.jpg" id="img1" alt="">
     </section>
     <section>
       <p>css实现的黑白</p>
@@ -42,10 +46,16 @@
     </section>
     <section class="wei">
       <p>微软文档算法 之 最简单的灰度为 r+g+b / 3</p>
+      <section class="img"></section>
     </section>
 
     <section class="ps">
       <p title="gray = (max - mid) * ratioMax + (mid - min) * ratioMaxMid + min">ps的黑白算法</p>
+      <section class="img"></section>
+    </section>
+
+    <section class="upload">
+      <input type="file" id="file">
     </section>
   </main>
   <script src="dist/1.js"></script>
