@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>canvas之实现图片ps黑白算法</title>
+</head>
+<style>
+  main {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+  }
+
+  section {
+    padding: 30px 30px
+  }
+  img {
+    width: 400px;
+  }
+
+  canvas {
+    width: 400px;
+  }
+
+  #img2 {
+    filter: grayscale(100%);
+  }
+</style>
+
+<body>
+  <main>
+    <section>
+      <p>原图</p>
+      <img src="http://cdn.xyxiao.cn/bg10.jpg" id="img" alt="">
+    </section>
+    <section>
+      <p>css实现的黑白</p>
+      <img src="http://cdn.xyxiao.cn/bg10.jpg" id="img2" alt="">
+    </section>
+    <section class="wei">
+      <p>微软文档算法 之 最简单的灰度为 r+g+b / 3</p>
+    </section>
+
+    <section class="ps">
+      <p title="gray = (max - mid) * ratioMax + (mid - min) * ratioMaxMid + min">ps的黑白算法</p>
+    </section>
+  </main>
+  <script src="dist/1.js"></script>
+</body>
+
+</html>
