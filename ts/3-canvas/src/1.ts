@@ -127,7 +127,7 @@ const grayscaleImgWei = (obj: Imginfo):void => {
     const r:number = weiData.data[i]
     const g:number = weiData.data[i + 1]
     const b:number = weiData.data[i + 2]
-    gray = ~~(r + g + b) / 3
+    gray = ~~((r + g + b) / 3)
     weiData.data[i] = gray
     weiData.data[i + 1] = gray
     weiData.data[i + 2 ] = gray
