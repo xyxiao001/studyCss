@@ -19,6 +19,10 @@
   cyanRadio = 60%;
   blueRadio = 20%;
   magentaRadio = 80%;
+
+  微软算法  r + g + b / 3
+
+  matlab算法 Gray = 0.2989 * R + 0.5870 * G + 0.1140 * B
   */
 
 // 首先通过canvas读取到图片信息
@@ -67,6 +71,11 @@ const show = (src:string):void => {
     grayscaleImgWei(info)
     end = window.performance.now();
     console.log(`简单的取平均值的黑白算法耗时${end - start}ms`)
+
+    start = window.performance.now();
+    grayscaleImgMatLab(info)
+    end = window.performance.now();
+    console.log(`matlab的黑白算法耗时${end - start}ms`)
 
     start = window.performance.now();
     grayscaleImgPS(info)
@@ -126,6 +135,30 @@ const grayscaleImgWei = (obj: Imginfo):void => {
   ctx.putImageData(weiData, 0, 0);
   document.querySelector('.wei .img').innerHTML = ''
   document.querySelector('.wei .img').appendChild(canvas);
+}
+
+
+const grayscaleImgMatLab = (obj: Imginfo):void => {
+  const canvas = document.createElement('canvas')
+  const ctx = canvas.getContext('2d')
+  canvas.width = obj.width
+  canvas.height =  obj.height
+  ctx.drawImage(obj.dom, 0, 0)
+  // 获取图片的像素点 rgba
+  let weiData = ctx.getImageData(0, 0, obj.width, obj.height)
+  let gray:number = 0;
+  for (let i = 0; i < obj.width * obj.height * 4; i += 4) {
+    const r:number = weiData.data[i]
+    const g:number = weiData.data[i + 1]
+    const b:number = weiData.data[i + 2]
+    gray = ~~(0.2989 * r + 0.5870 * g + 0.1140 * b )
+    weiData.data[i] = gray
+    weiData.data[i + 1] = gray
+    weiData.data[i + 2 ] = gray
+  }
+  ctx.putImageData(weiData, 0, 0);
+  document.querySelector('.matlab .img').innerHTML = ''
+  document.querySelector('.matlab .img').appendChild(canvas);
 }
 
 const grayscaleImgPS = (obj: Imginfo): void => {
