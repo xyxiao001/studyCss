@@ -190,12 +190,12 @@ const grayscaleImgPS = (obj: Imginfo): void => {
     g = psData.data[i + 1]
     b = psData.data[i + 2]
     // 得到最大的值
-    max = Math.max(r, Math.max(g, b))
+    max = Math.max(r, g, b)
     // 得到最小值
-    min = Math.min(r, Math.min(g, b))
+    min = Math.min(r, g, b)
     // 得到中位值
-    mid = r + g + b - max -min
-
+    mid = r + g + b - max - min
+    
     if (max === r) {
       ratioMax = ratio[0]
     }
@@ -207,17 +207,16 @@ const grayscaleImgPS = (obj: Imginfo): void => {
     if (max === b) {
       ratioMax = ratio[4]
     }
-
-
-    if (r === min) {
+    
+    if (min === r) {
       ratioMaxMid = ratio[3]
     }
 
-    if (g === min) {
+    if (min === g) {
       ratioMaxMid = ratio[1]
     }
 
-    if (b === min) {
+    if (min === b) {
       ratioMaxMid = ratio[5]
     }
 
