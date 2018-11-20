@@ -30,6 +30,10 @@ show = (src) => {
         let start = 0;
         let end = 0;
         start = window.performance.now();
+        grayscaleFilter(info);
+        end = window.performance.now();
+        console.log(`canvas filter 实现耗时${end - start}ms`);
+        start = window.performance.now();
         grayscaleImgWei(info);
         end = window.performance.now();
         console.log(`简单的取平均值的黑白算法耗时${end - start}ms`);
@@ -44,6 +48,16 @@ show = (src) => {
     }).catch((error) => {
         console.log(error);
     });
+};
+const grayscaleFilter = (obj) => {
+    const canvas = document.createElement('canvas');
+    const ctx = canvas.getContext('2d');
+    canvas.width = obj.width;
+    canvas.height = obj.height;
+    ctx.filter = 'grayscale(100%)';
+    ctx.drawImage(obj.dom, 0, 0);
+    document.querySelector('.canvas-filter .img').innerHTML = '';
+    document.querySelector('.canvas-filter .img').appendChild(canvas);
 };
 // 首先通过canvas读取到图片信息)
 const grayscaleImgWei = (obj) => {
