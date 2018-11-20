@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>图片黑白算法-二值图像</title>
+</head>
+<style>
+  main {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+  }
+
+  main > section {
+    padding: 30px 30px
+  }
+  img {
+    max-width: 400px;
+  }
+
+  canvas {
+    max-width: 400px;
+  }
+
+  #img2 {
+  }
+
+  .upload {
+    width: 100%;
+  }
+</style>
+
+<body>
+  <main>
+    <section>
+      <p>原图</p>
+      <img src="http://cdn.xyxiao.cn/bg10.jpg" id="img1" alt="">
+    </section>
+
+    <section>
+      <p>原图</p>
+      <img src="http://cdn.xyxiao.cn/bg10.jpg" id="img2" alt="">
+    </section>
+    
+    <section class="wei">
+      <p>微软文档黑白算法</p>
+      <section class="img"></section>
+    </section>
+
+    <section class="matlab">
+        <p>MATLAB算法之加权平均值</p>
+        <section class="img"></section>
+      </section>
+
+    <section class="ps">
+      <p>ps的黑白算法</p>
+      <section class="img"></section>
+    </section>
+
+    <section class="upload">
+      <input type="file" id="file">
+    </section>
+  </main>
+  <script src="dist/common.js"></script>
+  <script src="dist/2.js"></script>
+</body>
+
+</html>

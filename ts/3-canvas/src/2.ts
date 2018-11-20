@@ -1,57 +1,33 @@
 /*
-  ps图片算法之灰度
-  ps通过对红、黄、绿、青、蓝和洋红等6种颜色的比例来灰度化图片：
-  gray= (max - mid) * ratio_max + (mid - min) * ratio_max_mid + min
-  gray ：像素的灰度值，不是真的灰色哈。
-  max : 像素点R、G、B三色中的最大者
-  mid：像素点R、G、B三色中的中间者
-  min：像素点R、G、B三色中的最小者
-  ratio_max：最大的颜色所占比率
-  ratio_max_mid：最大的颜色和中间颜色 合成颜色所占的比率
-
-  这六种颜色在ps中默认比例为：
-  y = r + g
-  q = g + b
-  z = r + b
-  redRadio = 40%;
-  yellowRadio = 60%;
-  greenRadio = 40%;
-  cyanRadio = 60%;
-  blueRadio = 20%;
-  magentaRadio = 80%;
-
-  微软算法  r + g + b / 3
-
-  matlab算法 Gray = 0.2989 * R + 0.5870 * G + 0.1140 * B
+这里的黑白图片，跟灰度不一样。灰度有256种颜色，而黑白则是只保留黑和白这两种颜色，看了后面的对比处理图片就能明白了。
+黑白图片的处理算法更简单：
+求RGB平均值Avg ＝ (R + G + B) / 3，如果Avg >= 100，则新的颜色值为R＝G＝B＝255；如果Avg < 100，则新的颜色值为R＝G＝B＝0；255就是白色，0就是黑色；至于为什么用100作比较，这是一个经验值吧，设置为128也可以，可以根据效果来 调整。
   */
-
 show = (src:string):void => {
   addImg(src).then((info: Imginfo) => {
     console.log(info)
     let start: number = 0
     let end: number = 0
     start = window.performance.now();
-    grayscaleImgWei(info)
+    blackAndWhiteWei(info)
     end = window.performance.now();
-    console.log(`简单的取平均值的黑白算法耗时${end - start}ms`)
+    console.log(`黑白算法微软耗时${end - start}ms`)
 
     start = window.performance.now();
-    grayscaleImgMatLab(info)
+    blackAndWhiteMatLab(info)
     end = window.performance.now();
-    console.log(`matlab的黑白算法耗时${end - start}ms`)
+    console.log(`黑白算法MATLAB耗时${end - start}ms`)
 
     start = window.performance.now();
-    grayscaleImgPS(info)
+    blackAndWhitePs(info)
     end = window.performance.now();
-    console.log(`ps黑白算法 ${end - start}ms`)
+    console.log(`黑白算法ps耗时${end - start}ms`)
   }).catch((error: Imginfo) => {
     console.log(error)
   })
 }
 
-
-// 首先通过canvas读取到图片信息)
-const grayscaleImgWei = (obj: Imginfo):void => {
+ const blackAndWhiteWei = (obj: Imginfo):void => {
   const canvas = document.createElement('canvas')
   const ctx = canvas.getContext('2d')
   canvas.width = obj.width
@@ -66,7 +42,7 @@ const grayscaleImgWei = (obj: Imginfo):void => {
     const r:number = weiData.data[i]
     const g:number = weiData.data[i + 1]
     const b:number = weiData.data[i + 2]
-    gray = ~~((r + g + b) / 3)
+    gray = ~~((r + g + b) / 3) > 128 ? 255 : 0
     weiData.data[i] = gray
     weiData.data[i + 1] = gray
     weiData.data[i + 2 ] = gray
@@ -77,7 +53,7 @@ const grayscaleImgWei = (obj: Imginfo):void => {
 }
 
 
-const grayscaleImgMatLab = (obj: Imginfo):void => {
+const blackAndWhiteMatLab = (obj: Imginfo):void => {
   const canvas = document.createElement('canvas')
   const ctx = canvas.getContext('2d')
   canvas.width = obj.width
@@ -90,7 +66,7 @@ const grayscaleImgMatLab = (obj: Imginfo):void => {
     const r:number = weiData.data[i]
     const g:number = weiData.data[i + 1]
     const b:number = weiData.data[i + 2]
-    gray = ~~(0.2989 * r + 0.5870 * g + 0.1140 * b )
+    gray = ~~(0.2989 * r + 0.5870 * g + 0.1140 * b ) > 128 ? 255 : 0
     weiData.data[i] = gray
     weiData.data[i + 1] = gray
     weiData.data[i + 2 ] = gray
@@ -100,7 +76,7 @@ const grayscaleImgMatLab = (obj: Imginfo):void => {
   document.querySelector('.matlab .img').appendChild(canvas);
 }
 
-const grayscaleImgPS = (obj: Imginfo): void => {
+const blackAndWhitePs = (obj: Imginfo): void => {
   const canvas = document.createElement('canvas')
   const ctx = canvas.getContext('2d')
   canvas.width = obj.width
@@ -160,6 +136,7 @@ const grayscaleImgPS = (obj: Imginfo): void => {
     }
 
     gray = (max - mid) * ratioMax + (mid - min) * ratioMaxMid + min
+    gray = gray > 128 ? 255 : 0
     psData.data[i] = gray
     psData.data[i + 1] = gray
     psData.data[i + 2] = gray
