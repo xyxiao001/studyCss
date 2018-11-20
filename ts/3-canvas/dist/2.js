@@ -34,7 +34,8 @@ const blackAndWhiteWei = (obj) => {
     let weiData = ctx.getImageData(0, 0, obj.width, obj.height);
     let gray = 0;
     // 微软算法  简单的灰度除以3
-    for (let i = 0; i < obj.width * obj.height * 4; i += 4) {
+    let i = 0;
+    while (i < obj.width * obj.height * 4) {
         const r = weiData.data[i];
         const g = weiData.data[i + 1];
         const b = weiData.data[i + 2];
@@ -42,6 +43,7 @@ const blackAndWhiteWei = (obj) => {
         weiData.data[i] = gray;
         weiData.data[i + 1] = gray;
         weiData.data[i + 2] = gray;
+        i += 4;
     }
     ctx.putImageData(weiData, 0, 0);
     document.querySelector('.wei .img').innerHTML = '';
@@ -56,7 +58,8 @@ const blackAndWhiteMatLab = (obj) => {
     // 获取图片的像素点 rgba
     let weiData = ctx.getImageData(0, 0, obj.width, obj.height);
     let gray = 0;
-    for (let i = 0; i < obj.width * obj.height * 4; i += 4) {
+    let i = 0;
+    while (i < obj.width * obj.height * 4) {
         const r = weiData.data[i];
         const g = weiData.data[i + 1];
         const b = weiData.data[i + 2];
@@ -64,6 +67,7 @@ const blackAndWhiteMatLab = (obj) => {
         weiData.data[i] = gray;
         weiData.data[i + 1] = gray;
         weiData.data[i + 2] = gray;
+        i += 4;
     }
     ctx.putImageData(weiData, 0, 0);
     document.querySelector('.matlab .img').innerHTML = '';
@@ -93,7 +97,8 @@ const blackAndWhitePs = (obj) => {
     // q = g + b
     // z = r + b
     let ratio = [0.4, 0.6, 0.4, 0.6, 0.2, 0.8];
-    for (let i = 0; i < obj.width * obj.height * 4; i += 4) {
+    let i = 0;
+    while (i < obj.width * obj.height * 4) {
         r = psData.data[i];
         g = psData.data[i + 1];
         b = psData.data[i + 2];
@@ -126,6 +131,7 @@ const blackAndWhitePs = (obj) => {
         psData.data[i] = gray;
         psData.data[i + 1] = gray;
         psData.data[i + 2] = gray;
+        i += 4;
     }
     ctx.putImageData(psData, 0, 0);
     document.querySelector('.ps .img').innerHTML = '';
