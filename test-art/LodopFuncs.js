@@ -5,7 +5,7 @@ var head = document.head || document.getElementsByTagName("head")[0] || document
 
 //让其它电脑的浏览器通过本机打印（仅适用C-Lodop自带的例子）：
 var oscript = document.createElement("script");
-oscript.src ="/CLodopfuncs.js";
+oscript.src ="./CLodopfuncs.js";
 head.insertBefore( oscript,head.firstChild );
 
 //让本机的浏览器打印(更优先一点)：

@@ -164,45 +164,702 @@
       </div>
     </div>
   </script>
-  <script src="./LodopFuncs.js"></script>
-  <script src="./test.js"></script>
+
+  <script id="render" type="text/html">
+    <div>
+      <style>
+        p{
+          margin: 0;
+        }
+        .main{
+          position: relative;
+          font-size: 12px;
+          font-family: '微软雅黑';
+        }
+        .name img{
+          width: 12px;
+          margin-right: 6px;
+        }
+        .cover{
+          width: 210mm;
+          height: 268mm;
+          position: relative;
+        }
+        .cover .header{
+          position: absolute;
+          top: 0px;
+          left: 20px;
+        }
+        .cover .header img{
+          width: 174px;
+          height: 44px;
+        }
+        .cover .body{
+          width: 180mm;
+          margin: 0 auto;
+          padding-top: 160px;
+        }
+        .cover .body .title p{
+          margin: 0;
+        }
+        .cover .body .title .zh{
+          font-size: 36px;
+          color: #2B354A;
+          letter-spacing: 20.4px;
+          text-align: center;
+          font-weight: bold;
+          margin-top: 70px;
+        }
+        .cover .body .title .tl{
+          font-size: 40px;
+          letter-spacing: 3.4px;
+          color: #2B354A;
+          text-align: center;
+        }
+        .cover .body .title .en{
+          font-size: 22px;
+          letter-spacing: 3.36px;
+          text-align: center;
+          margin-top: 10px;
+        }
+        .cover .brief{
+          margin: auto;
+          margin-top: 120px;
+          margin-bottom: 168px;
+        }
+        .cover .brief p{
+          width: 300px;
+          margin: 0 auto;
+          text-align: center;
+        }
+        .cover .brief p span {
+          font-size: 16px;
+          color: #000000;
+          letter-spacing: 6px;
+          line-height: 20px;
+          margin: 0 20px;
+        }
+        .cover .patient{
+          width: 300px;
+          height: 98px;
+          padding: 16px 0 16px 46px;
+          font-size: 14px;
+          margin: 0px auto;
+          border: 2px solid gray;
+          -ms-border-radius: 6px;
+          -webkit-border-radius: 6px;
+          -moz-border-radius: 6px;
+          border-radius: 6px;
+        }
+        .cover .patient p {
+          margin-top: 0;
+          margin-bottom: 6px;
+          overflow:hidden;
+        }
+        .cover .patient span{
+          font-size: 14px;
+          color: #000000;
+          line-height: 20px;
+        }
+        .cover .patient label{
+          font-size: 14px;
+          color: #666666;
+          line-height: 20px;
+          width: 72px;
+          float: left;
+        }
+        .overview{ 
+          width: 200mm;
+          padding: 0mm 5mm;
+          position: relative;
+        }
+        .overview p {
+          margin: 0;
+        }
+        .overview .content {
+          padding: 20px 8mm 0 8mm;
+        }
+        .overview .summary .title {
+          font-size: 20px;
+          color: #2B354A;
+          margin-bottom: 10px;
+        }
+        .overview .summary .sub-title {
+          font-size: 14px;
+          color: #2B354A;
+          margin-bottom: 5px;
+        }
+        .overview .summary .disease-name {
+          margin-bottom: 5px;
+        }
+        .overview .result .detail{
+          margin-top: 20px;
+          margin-bottom: 10px;
+          overflow: hidden;
+        }
+        .overview .result .advice{
+          white-space: pre-line;
+        }
+        .overview .result .name{
+          color: #2B354A;
+          margin-bottom: 5px;
+        }
+        .overview .result .exception{
+          margin-bottom: 10px;
+        }
+        .overview .result .exception p{
+          margin-bottom: 2px;
+        }
+        .overview .footer{
+          margin-top: 100px;
+          padding-bottom: 5px;
+          border-bottom: 1px dashed #000;
+          width: 200mm;
+        }
+        .overview .footer .sign {
+          margin-left: 25%;
+          overflow: hidden;
+        }
+        .overview .footer .sign p{
+          float: left;
+          width: 33%;
+        }
+        .dept{ 
+          width: 200mm;
+          padding: 0mm 5mm;
+          position: relative;
+        }
+        .dept .content {
+          padding: 20px 8mm 0 8mm;
+        }
+        .dept .title {
+          font-size: 20px;
+          color: #2B354A;
+          margin-bottom: 10px;
+        }
+        .dept .result .name{
+          font-size: 14px;
+          color: #2B354A;
+          line-height: 20px;
+          margin-bottom: 10px;
+        }
+        .dept .result{
+          margin-bottom: 20px;
+        }
+        .dept tr th{
+          text-align: left;
+          padding-left: 10px;
+        }
+        .dept tr th:first-child{
+          padding-left: 0;
+        }
+        .dept tr td{
+          padding-left: 10px;
+          border-right: 1px dashed #000;
+        }
+        .dept tr td:first-child{
+          padding-left: 0;
+        }
+        .dept tr td:last-child{
+          border: none;
+        }
+        .dept .examine{
+          margin: 10px 0;
+          padding: 5px 0px;
+          border-bottom: 1px dashed #000;
+          text-align: right;
+        }
+        .dept .examine p{
+          display: inline-block;
+        }
+      </style>
+      <div class="main">
+        <section class="cover">
+          <div class="body">
+            <div class="title">
+              <p class="tl" style="padding-left: 18px">微医全科（{{hospCityName}}） </p> 
+              <p class="en">We Doctor  Primary  Care  Center </p> 
+              <p class="zh" style="padding-left: 18px">健康体检报告</p>         
+            </div>
+            <div class="brief">
+              <p>
+                <span>全人</span>
+                <span>全程</span>
+                <span>全家</span>
+              </p>
+              <p>
+                <span>专业</span>
+                <span>专注</span>
+                <span>关爱</span>
+              </p>
+            </div>
+            <div class="patient">
+              <p>
+                <label>会员号</label>
+                <span>{{clinicCardNo}}</span>
+              </p>
+              <p>
+                <label>姓&nbsp;&nbsp;&nbsp;名</label>
+                <span>{{patientName}}</span>
+              </p>
+              <p>
+                <label>单&nbsp;&nbsp;&nbsp;位</label>
+                <span>{{patientCompanyName}}</span>
+              </p>
+              <p>
+                <label>日&nbsp;&nbsp;&nbsp;期</label>
+                <span>{{patientPeDate}}</span>
+              </p>
+            </div>
+          </div>
+        </section>
+        <section style='margin-top: -120px'>
+          <section class="cover">
+          </section>
+        </section>
+      </div>
+      </div>
+    
+  </script>
+
+  <script id="headRender" type="text/html">
+    <style>
+      header{
+        padding-bottom: 12px;
+        width: 210mm;
+        height: 60px;
+        line-height: 60px;
+        text-align:center;
+        background: rgb(246,252,243);
+        overflow:hidden;
+        font-family: '微软雅黑';
+      }
+      p{
+        margin: 0;
+        font-size: 12px;
+        float:left;
+        width: 25%;
+      }
+    </style>
+    <header>
+      <p>体检报告</p>
+      <p>流水号：{{serialNum }}</p>
+      <p>姓名：{{patientName}} ({{patientSex}}, {{patientAge}})</p>
+      <p>体检日期：{{patientPeDate}}</p>
+    </header>
+    <div style="margin: 0 5mm; border-bottom: 1px dashed #000;"></div>
+  </script>
+
+  <script id="bgRender" type="text/html">
+    <style>
+      .cover-bg{
+        width: 210mm;
+        height: 270mm;
+        position: relative;
+      }
+      .cover .header{
+        position: absolute;
+        left: 50px;
+        top: 50px;
+      }
+      .cover .header img{
+        width: 174px;
+        height: 44px;
+      }
+    </style>
+    <section class="cover">
+      <img class="cover-bg" src="./print_bg.png" />
+      <div class="header">
+        <img src="./print_logo.png" />
+      </div>
+</section>
+  </script>
+
+  <script id="branchRender" type="text/html">
+    <div>
+        <style>
+          p{
+            margin: 0;
+          }
+          .main{
+            position: relative;
+            font-size: 12px;
+            font-family: '微软雅黑';
+          }
+          .name img{
+            width: 12px;
+            margin-right: 6px;
+          }
+          .dept{ 
+            width: 200mm;
+            padding: 0mm 5mm;
+            position: relative;
+          }
+          .dept .content {
+            padding: 20px 35px 0 35px;
+          }
+          .dept .title {
+            font-size: 20px;
+            color: #328BAD;
+            margin-bottom: 10px;
+          }
+          .title .title-mark { 
+            border: solid 2px #328BAD;
+            margin-right: 10px;
+          }
+          .dept .result .name{
+            font-size: 16px;
+            color: #328BAD;
+            line-height: 25px;
+            padding-left: 17px;
+            margin-bottom: 10px;
+          }
+          .dept .result{
+            margin-bottom: 20px;
+          }
+          .dept tr th{
+            text-align: left;
+            padding-left: 10px;
+          }
+          .dept tr th:first-child{
+            padding-left: 0;
+          }
+          .dept tr td{
+            padding-left: 10px;
+          }
+          .dept tr td:first-child{
+            padding-left: 0;
+          }
+          .dept tr td:last-child{
+            border: none;
+          }
+          .dept .examine{
+            margin: 10px 0;
+            padding: 5px 0px;
+            border-bottom: 1px dashed #000;
+            text-align: right;
+          }
+          .dept .examine p{
+            display: inline-block;
+          }
+          .detail .detail-title{
+            height: 35px;
+            line-height: 30px;
+            background: #328BAD;
+            color: #fff;
+          }
+          .detail .distance{
+            margin-left: 20px;
+          }
+        </style>
+        <div class="main">
+          <section>
+            <section class="dept">
+              <div class="content">
+                <p class="title">
+                  <span class="title-mark"></span>
+                  分科体检报告
+                </p>
+                <div class="result general">
+                  <div class="detail">
+                    <ul class="name">
+                      <li>体检科室：体检科</li>
+                    </ul>
+                    <div class="detail-title">
+                      <div class="distance">
+                        <span style="width:190px;display:inline-block">指标</span>
+                        <span>结果</span>
+                      </div>
+                    </div>
+                    <table class="distance">
+                      <colgroup>
+                        <col width="180px"></col>
+                        <col width="180px"></col>
+                      </colgroup>
+                      <tr>
+                        <td>身高</td>
+                        <td>
+                        {{if assessmentDetail && assessmentDetail.height}}
+                          {{assessmentDetail.height/10}}cm
+                        {{/if}}
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>体重</td>
+                        <td>
+                        {{if assessmentDetail && assessmentDetail.weight}}
+                          {{assessmentDetail.weight/1000}}
+                            kg
+                        {{/if}}
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>体重指数</td>
+                        <td>
+                        {{if assessmentDetail && assessmentDetail.bmi}}
+                        {{assessmentDetail.bmi}}
+                        {{/if}}
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>腰围</td>
+                        <td>
+                        {{if assessmentDetail && assessmentDetail.waistline}}
+                          {{assessmentDetail.waistline}}
+                          cm
+                        {{/if}}
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>脉搏</td>
+                        <td>
+                        {{if assessmentDetail && assessmentDetail.pulse}}
+                          {{assessmentDetail.pulse}}
+                          次/分
+                        {{/if}}
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>血压</td>
+                        <td>
+                        {{if (assessmentDetail && assessmentDetail.bloodPressHigh) || (assessmentDetail &&  assessmentDetail.bloodPressLow)}}
+                          {{assessmentDetail.bloodPressHigh}}/{{assessmentDetail.bloodPressLow}}
+                          mmHg
+                        {{/if}}
+                        </td>
+                      </tr>
+                      <tr>
+                      <td>备注</td>
+                      <td>
+                      {{if assessmentDetail && assessmentDetail.note}}
+                        {{assessmentDetail.note}}
+                      </td>
+                      {{/if}}
+                    </tr>
+                    </table> 
+                  </div>
+                </div>
+                {{each deptExamResults result}}
+                  <div class="result general">
+                    <div class="detail">
+                      <ul class="name">
+                        <li>体检科室：{{result.deptName}}</li>
+                      </ul>
+                      <div class="detail-title">
+                        <div class="distance">
+                          <span style="width:190px;display:inline-block">指标</span>
+                          <span>结果</span>
+                        </div>
+                      </div>
+                      <table class="distance">
+                        <colgroup>
+                          <col width="180px"></col>
+                          <col width="180px"></col>
+                        </colgroup>
+                        {{each result.peDeptForms item}}
+                          <tr>
+                            <td>{{item.formItemName}}</td>
+                            {{if !item.formItemGroupId}}
+                              <td>{{item.formItemValue}}</td>
+                            {{/if}}
+                            {{if item.formItemGroupId}}
+                            <td>
+                            {{each item.peDeptForms itemSon}}
+                              {{if itemSon && itemSon.formItemValue}}
+                                <span>{{itemSon.formItemName}}</span>:
+                                <span>{{itemSon.formItemValue}}</span>;
+                              {{/if}}
+                            {{/each}}
+                            </td>
+                            {{/if}}
+                          </tr>
+                        {{/each}}
+                      </table> 
+                      <div class="examine">
+                        <p>
+                          <label>检查人：</label>
+                          <span>{{result.checkDoctor}}</span>
+                        </p>
+                        <p style="margin: 0 42px">
+                          <label>检查时间：</label>
+                          <span>{{result.checkDate}}</span>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                {{/each}}
+                {{if cisExamResults.length > 0}}
+                  <div class="result general">
+                    <div class="detail">
+                      <ul class="name">
+                        <li>体检科室：心电图</li>
+                      </ul>
+                      {{each cisExamResults result}}
+                      <p style="margin-bottom: 10px; margin-top: 15px">《{{result.peItemName}}》</p>
+                      <p>检查诊断：{{result.checkDiganosis}}</p>
+                      <div class="examine">
+                        <p>
+                          <label>检查人：</label>
+                          <span>{{result.checkDoctor}}</span>
+                        </p>
+                        <p style="margin: 0 42px">
+                          <label>检查时间：</label>
+                          <span>{{result.checkDate}}</span>
+                        </p>
+                      </div>
+                      {{/each}}
+                    </div>
+                  </div>
+                {{/if}}
+                {{if pacsExamResults.length > 0}}
+                  <div class="result general">
+                    <div class="detail">
+                      <ul class="name">
+                        <li>体检科室：放射科/超声科</li>
+                      </ul>
+                      {{each pacsExamResults result}}
+                      <p style="margin-bottom: 10px; margin-top: 15px">《{{result.peItemName}}》</p>
+                      <p>检查描述：{{result.checkDescription}}</p>
+                      <p>检查诊断：{{result.checkDiganosis}}</p>
+                      <div class="examine">
+                        <p>
+                          <label>检查人：</label>
+                          <span>{{result.checkDoctor}}</span>
+                        </p>
+                        <p style="margin: 0 42px">
+                          <label>检查时间：</label>
+                          <span>{{result.checkDate}}</span>
+                        </p>
+                      </div>
+                      {{/each}}
+                    </div>
+                  </div>
+                {{/if}}
+                {{if libExamResult.length > 0}}
+                  <div class="result general">
+                    <div class="detail">
+                       <ul class="name">
+                         <li>体检科室：检验科</li>
+                       </ul>
+                      {{each libExamResult result}}
+                      <p style="margin-bottom: 10px; margin-top: 15px">《{{result.peItemName}}》</p>
+                      <table>
+                        <colgroup>
+                          <col width="120px"></col>
+                          <col width="120px"></col>
+                          <col width="120px"></col>
+                          <col width="120px"></col>
+                          <col width="120px"></col>
+                        </colgroup>
+                        <tr>
+                          <th>指标名称</th>
+                          <th>检查结果</th>
+                          <th>单位</th>
+                          <th>参考范围</th>
+                          <th>提示</th>
+                        </tr>
+                        {{each result.libExamDetail detail}}
+                          <tr>
+                            <td>{{detail.itemName}}</td>
+                            <td>{{detail.result}}</td>
+                            <td>{{detail.unit}}</td>
+                            <td>{{detail.referenceRange}}</td>
+                            <td>{{detail.referenceResult}}</td>
+                          </tr>
+                        {{/each}}
+                      </table> 
+                      <div class="examine">
+                        <p>
+                          <label>检查人：</label>
+                          <span>{{result.checkDoctor}}</span>
+                        </p>
+                        <p style="margin: 0 42px">
+                          <label>检查时间：</label>
+                          <span>{{result.checkDate}}</span>
+                        </p>
+                      </div>
+                      {{/each}}
+                    </div>
+                  </div>
+                {{/if}}
+              </div>
+            </section>
+          </section>
+          <div style="text-align:right;margin-top:136px;color:#2B354A;padding-right:6mm">
+            <span style="font-size="12px;">谢谢合作，祝您健康！本体检报告仅供临床参考，不作临床诊断依据</span>
+          </div>
+        </div>
+        </div>
+  </script>
+
+  <script src="./lodopFuncs.js"></script>
+  <script src="./test2.js"></script>
 
   <script type="text/javascript">
-    // var str = '小米/n我们/n2好像真的是这样子的啊'
-    // console.log(str)
-    // var html = template('tpl-user', {
-    //   user: {
-    //     name: str
-    //   }
-    // })
-    // html = html.replace(/\/n/g, '<br />')
-    // console.log(html)
-    // document.getElementById('test').innerHTML = html
-
-
-    let data = JSON.stringify(testJson.data)
-    data = data.replace(/\r?\\n/g, '<br />')
-    var html2 = template('test-print', JSON.parse(data));
-    html2 = html2.replace(/&#60;br \/&#62;/g, '<br />')
-    console.log(html2);
-    document.getElementById('test2').innerHTML = html2
-
     // 打印
-    var LODOP;
-    function preview1() {	
-      show1();	
-      LODOP.PREVIEW();	
+    var lodop;
+
+    function preview1() {
+      // show1();	
+      lodop.PREVIEW();	
     };
 
     function show1() {
-      LODOP=getLodop();  
-      LODOP.PRINT_INIT("测试打印");
-      LODOP.SET_PRINT_STYLE("FontSize",18);
-      LODOP.SET_PRINT_STYLE("Bold",1);
-      LODOP.ADD_PRINT_HTM('25mm', 0, 'BottomMargin:2mm', 'BottomMargin:10mm', document.getElementById('test2').innerHTML);
-      // LODOP.ADD_PRINT_HTM(0, 0, 450, 900, document.getElementById('test2').innerHTML);
+      lodop = getLodop();
+      lodop.ADD_PRINT_HTM('25mm', 0, 'BottomMargin:2mm', 'BottomMargin:10mm', document.getElementById('test2').innerHTML);
+      // lodop.ADD_PRINT_HTM(0, 0, 450, 900, document.getElementById('test2').innerHTML);
     }
 
+    function checked() {
+      let data = JSON.stringify(testJson.data)
+      data = data.replace(/\r?\\n/g, '<br />')
+      data = JSON.parse(data)
+
+      const headerField = ['serialNum', 'patientName', 'patientPeDate', 'patientSex', 'patientAge'];
+      const innerHtml = template('render', data)
+      console.log(lodop)
+      lodop.ADD_PRINT_HTM(0, 0, 'BottomMargin:2mm', '100%', template('bgRender', {}));
+      // 页眉
+      const headerData = {};
+      for (let i = 0, len = headerField.length; i < len; i += 1) {
+        const field = headerField[i];
+        headerData[field] = data[field];
+      }
+      const headerHtml = template('headRender', headerData)
+      // 给所添加的文本定义样式,0：表示新添加的元素，相应的属性，相应的值
+      lodop.ADD_PRINT_HTM(0, 0, '100%', '100%', headerHtml);
+      lodop.SET_PRINT_STYLEA(0, 'ItemType', 1);// 设置页眉页脚
+      lodop.SET_PRINT_STYLEA(0, 'Horient', 3);
+      lodop.SET_PRINT_STYLEA(0, 'PageUnIndex', ['1', '2']);// 1页、2页不输出，排除法。
+
+      lodop.SET_PRINT_MODE('PRINT_DUPLEX', 2);
+      lodop.ADD_PRINT_HTM('25mm', 0, 'BottomMargin:2mm', 'BottomMargin:10mm', innerHtml);
+      lodop.NEWPAGEA();
+
+      // 里面的数据渲染
+      var totalRender = template('test-print', data);
+      totalRender = totalRender.replace(/&#60;br \/&#62;/g, '<br />')
+      lodop.ADD_PRINT_HTM('25mm', 0, 'BottomMargin:2mm', 'BottomMargin:10mm', totalRender);
+      lodop.NEWPAGEA();
+      document.getElementById('test2').innerHTML = totalRender
+      
+      lodop.ADD_PRINT_HTM('25mm', 0, 'BottomMargin:2mm', 'BottomMargin:10mm', template('branchRender', data));
+      // 页码显示
+      lodop.ADD_PRINT_HTM(1085, 320, 300, 100, "<div style='font-size:14px; color:gray;'>——  <span tdata='pageNo-2'>第##页</span>/<span tdata='pageCount-2'>共##页</span>  ——</div>");
+      lodop.SET_PRINT_STYLEA(0, 'ItemType', 1);// 设置页眉页脚
+      lodop.SET_PRINT_STYLEA(0, 'Horient', 3);
+      lodop.SET_PRINT_STYLEA(0, 'PageUnIndex', ['1', '2']);// 1页、2页不输出，排除法。
+      
+      lodop.SET_PRINT_MODE('POS_BASEON_PAPER', true);
+      lodop.SET_PRINT_MODE('CATCH_PRINT_STATUS', true);
+      
+
+    }
+
+    setTimeout(function () {
+      lodop = getLodop()
+      checked()
+    }, 200)
   </script>
 </body>
 
