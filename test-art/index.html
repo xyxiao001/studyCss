@@ -696,7 +696,8 @@
                       </ul>
                       {{each cisExamResults result}}
                       <p style="margin-bottom: 10px; margin-top: 15px">《{{result.peItemName}}》</p>
-                      <p>检查诊断：{{result.checkDiganosis}}</p>
+                      <p>检查诊断：</p>
+                      <p>{{result.checkDiganosis}}</p>
                       <div class="examine">
                         <p>
                           <label>检查人：</label>
@@ -719,8 +720,9 @@
                       </ul>
                       {{each pacsExamResults result}}
                       <p style="margin-bottom: 10px; margin-top: 15px">《{{result.peItemName}}》</p>
-                      <p>检查描述：{{result.checkDescription}}</p>
-                      <p>检查诊断：</p>
+                      <p style="padding-bottom: 2px">检查描述：</p>
+                      <p style="padding-bottom: 3px">{{result.checkDescription}}</p>
+                      <p style="padding-bottom: 2px">检查诊断：</p>
                       <p>{{result.checkDiganosis}}</p>
                       <div class="examine">
                         <p>

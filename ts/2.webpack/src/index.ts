@@ -134,3 +134,6 @@ Arrs.push({
   name: '1'
 })
 console.log(Arrs)
+
+import { a, b } from './3'
+console.log(a, b)
