@@ -838,19 +838,19 @@
 
       lodop.SET_PRINT_MODE('PRINT_DUPLEX', 2);
       innerHtml = innerHtml.replace(/&#60;br \/&#62;/g, '<br />')
-      lodop.ADD_PRINT_HTM('25mm', 0, 'BottomMargin:2mm', 'BottomMargin:10mm', innerHtml);
+      lodop.ADD_PRINT_HTM('25mm', 0, 'BottomMargin:2mm', 'BottomMargin:15mm', innerHtml);
       lodop.NEWPAGEA();
 
       // 里面的数据渲染
       var totalRender = template('test-print', data);
       totalRender = totalRender.replace(/&#60;br \/&#62;/g, '<br />')
-      lodop.ADD_PRINT_HTM('25mm', 0, 'BottomMargin:2mm', 'BottomMargin:10mm', totalRender);
+      lodop.ADD_PRINT_HTM('25mm', 0, 'BottomMargin:2mm', 'BottomMargin:15mm', totalRender);
       lodop.NEWPAGEA();
       document.getElementById('test2').innerHTML = totalRender
       
       let branchData = template('branchRender', data)
       branchData = branchData.replace(/&#60;br \/&#62;/g, '<br />')
-      lodop.ADD_PRINT_HTM('25mm', 0, 'BottomMargin:2mm', 'BottomMargin:10mm', branchData);
+      lodop.ADD_PRINT_HTM('25mm', 0, 'BottomMargin:2mm', 'BottomMargin:15mm', branchData);
       // 页码显示
       lodop.ADD_PRINT_HTM(1085, 320, 300, 100, "<div style='font-size:14px; color:gray;'>——  <span tdata='pageNo-2'>第##页</span>/<span tdata='pageCount-2'>共##页</span>  ——</div>");
       lodop.SET_PRINT_STYLEA(0, 'ItemType', 1);// 设置页眉页脚
