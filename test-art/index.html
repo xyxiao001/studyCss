@@ -477,93 +477,173 @@
 
   <script id="branchRender" type="text/html">
     <div>
-        <style>
-          p{
-            margin: 0;
-          }
-          .main{
-            position: relative;
-            font-size: 12px;
-            font-family: '微软雅黑';
-          }
-          .name img{
-            width: 12px;
-            margin-right: 6px;
-          }
-          .dept{ 
-            width: 200mm;
-            padding: 0mm 5mm;
-            position: relative;
-          }
-          .dept .content {
-            padding: 20px 35px 0 35px;
-          }
-          .dept .title {
-            font-size: 20px;
-            color: #328BAD;
-            margin-bottom: 10px;
-          }
-          .title .title-mark { 
-            border: solid 2px #328BAD;
-            margin-right: 10px;
-          }
-          .dept .result .name{
-            font-size: 16px;
-            color: #328BAD;
-            line-height: 25px;
-            padding-left: 17px;
-            margin-bottom: 10px;
-          }
-          .dept .result{
-            margin-bottom: 20px;
-          }
-          .dept tr th{
-            text-align: left;
-            padding-left: 10px;
-          }
-          .dept tr th:first-child{
-            padding-left: 0;
-          }
-          .dept tr td{
-            padding-left: 10px;
-          }
-          .dept tr td:first-child{
-            padding-left: 0;
-          }
-          .dept tr td:last-child{
-            border: none;
-          }
-          .dept .examine{
-            margin: 10px 0;
-            padding: 5px 0px;
-            border-bottom: 1px dashed #000;
-            text-align: right;
-          }
-          .dept .examine p{
-            display: inline-block;
-          }
-          .detail .detail-title{
-            height: 35px;
-            line-height: 30px;
-            background: #328BAD;
-            color: #fff;
-          }
-          .detail .distance{
-            margin-left: 20px;
-          }
-        </style>
-        <div class="main">
-          <section>
-            <section class="dept">
-              <div class="content">
-                <p class="title">
-                  <span class="title-mark"></span>
-                  分科体检报告
-                </p>
+      <style>
+        p{
+          margin: 0;
+        }
+        .main{
+          position: relative;
+          font-size: 9pt;
+          font-family: '微软雅黑';
+        }
+        .name img{
+          width: 9pt;
+          margin-right: 5pt;
+        }
+        .dept{ 
+          width: 200mm;
+          padding: 0mm 5mm;
+          position: relative;
+        }
+        .dept .content {
+          padding: 15pt 26pt 0 26pt;
+        }
+        .dept .title {
+          font-size: 15pt;
+          color: #328BAD;
+          margin-bottom: 8pt;
+        }
+        .title .title-mark { 
+          border: solid 2px #328BAD;
+          margin-right: 8pt;
+        }
+        .dept .result .name{
+          font-size: 12pt;
+          color: #328BAD;
+          line-height: 18pt;
+          padding-left: 13pt;
+          margin-bottom: 8pt;
+        }
+        .dept .result{
+          margin-bottom: 15pt;
+        }
+        .dept tr th{
+          text-align: left;
+          padding-left: 8pt;
+        }
+        .dept tr th:first-child{
+          padding-left: 0;
+        }
+        .dept tr td{
+          padding-left: 8pt;
+        }
+        .dept tr td:first-child{
+          padding-left: 0;
+        }
+        .dept tr td:last-child{
+          border: none;
+        }
+        .dept .examine{
+          margin: 8pt 0;
+          padding: 5pt 0px;
+          border-bottom: 1px dashed #000;
+          text-align: right;
+        }
+        .dept .examine p{
+          display: inline-block;
+        }
+        .detail .detail-title{
+          height: 26pt;
+          line-height: 22pt;
+          background: #328BAD;
+          color: #fff;
+        }
+        .detail .distance{
+          margin-left: 15pt;
+        }
+      </style>
+      <div class="main">
+        <section>
+          <section class="dept">
+            <div class="content">
+              <p class="title">
+                <span class="title-mark"></span>
+                分科体检报告
+              </p>
+              <div class="result general">
+                <div class="detail">
+                  <ul class="name">
+                    <li>体检科室：体检科</li>
+                  </ul>
+                  <div class="detail-title">
+                    <div class="distance">
+                      <span style="width:190px;display:inline-block">指标</span>
+                      <span>结果</span>
+                    </div>
+                  </div>
+                  <table class="distance">
+                    <colgroup>
+                      <col width="180px"></col>
+                      <col width="180px"></col>
+                    </colgroup>
+                    <tr>
+                      <td>身高</td>
+                      <td>
+                      {{if assessmentDetail && assessmentDetail.height}}
+                        {{assessmentDetail.height/10}}cm
+                      {{/if}}
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>体重</td>
+                      <td>
+                      {{if assessmentDetail && assessmentDetail.weight}}
+                        {{assessmentDetail.weight/1000}}
+                          kg
+                      {{/if}}
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>体重指数</td>
+                      <td>
+                      {{if assessmentDetail && assessmentDetail.bmi}}
+                      {{assessmentDetail.bmi}}
+                      {{/if}}
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>腰围</td>
+                      <td>
+                      {{if assessmentDetail && assessmentDetail.waistline}}
+                        {{assessmentDetail.waistline}}
+                        cm
+                      {{/if}}
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>脉搏</td>
+                      <td>
+                      {{if assessmentDetail && assessmentDetail.pulse}}
+                        {{assessmentDetail.pulse}}
+                        次/分
+                      {{/if}}
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>血压</td>
+                      <td>
+                      {{if (assessmentDetail && assessmentDetail.bloodPressHigh) || (assessmentDetail &&  assessmentDetail.bloodPressLow)}}
+                        {{assessmentDetail.bloodPressHigh}}/{{assessmentDetail.bloodPressLow}}
+                        mmHg
+                      {{/if}}
+                      </td>
+                    </tr>
+                    <tr>
+                    <td>备注</td>
+                    <td>
+                    {{if assessmentDetail && assessmentDetail.note}}
+                      {{assessmentDetail.note}}
+                    </td>
+                    {{/if}}
+                  </tr>
+                  </table> 
+                </div>
+              </div>
+              {{each deptExamResults result}}
                 <div class="result general">
                   <div class="detail">
                     <ul class="name">
-                      <li>体检科室：体检科</li>
+                      <li>体检科室：{{result.deptName}}</li>
                     </ul>
                     <div class="detail-title">
                       <div class="distance">
@@ -576,223 +656,143 @@
                         <col width="180px"></col>
                         <col width="180px"></col>
                       </colgroup>
-                      <tr>
-                        <td>身高</td>
-                        <td>
-                        {{if assessmentDetail && assessmentDetail.height}}
-                          {{assessmentDetail.height/10}}cm
-                        {{/if}}
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>体重</td>
-                        <td>
-                        {{if assessmentDetail && assessmentDetail.weight}}
-                          {{assessmentDetail.weight/1000}}
-                            kg
-                        {{/if}}
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>体重指数</td>
-                        <td>
-                        {{if assessmentDetail && assessmentDetail.bmi}}
-                        {{assessmentDetail.bmi}}
-                        {{/if}}
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>腰围</td>
-                        <td>
-                        {{if assessmentDetail && assessmentDetail.waistline}}
-                          {{assessmentDetail.waistline}}
-                          cm
-                        {{/if}}
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>脉搏</td>
-                        <td>
-                        {{if assessmentDetail && assessmentDetail.pulse}}
-                          {{assessmentDetail.pulse}}
-                          次/分
-                        {{/if}}
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>血压</td>
-                        <td>
-                        {{if (assessmentDetail && assessmentDetail.bloodPressHigh) || (assessmentDetail &&  assessmentDetail.bloodPressLow)}}
-                          {{assessmentDetail.bloodPressHigh}}/{{assessmentDetail.bloodPressLow}}
-                          mmHg
-                        {{/if}}
-                        </td>
-                      </tr>
-                      <tr>
-                      <td>备注</td>
-                      <td>
-                      {{if assessmentDetail && assessmentDetail.note}}
-                        {{assessmentDetail.note}}
-                      </td>
-                      {{/if}}
-                    </tr>
+                      {{each result.peDeptForms item}}
+                        <tr>
+                          <td>{{item.formItemName}}</td>
+                          {{if !item.formItemGroupId}}
+                            <td>{{item.formItemValue}}</td>
+                          {{/if}}
+                          {{if item.formItemGroupId}}
+                          <td>
+                          {{each item.peDeptForms itemSon}}
+                            {{if itemSon && itemSon.formItemValue}}
+                              <span>{{itemSon.formItemName}}</span>:
+                              <span>{{itemSon.formItemValue}}</span>;
+                            {{/if}}
+                          {{/each}}
+                          </td>
+                          {{/if}}
+                        </tr>
+                      {{/each}}
                     </table> 
+                    <div class="examine">
+                      <p>
+                        <label>检查人：</label>
+                        <span>{{result.checkDoctor}}</span>
+                      </p>
+                      <p style="margin: 0 42px">
+                        <label>检查时间：</label>
+                        <span>{{result.checkDate}}</span>
+                      </p>
+                    </div>
                   </div>
                 </div>
-                {{each deptExamResults result}}
-                  <div class="result general">
-                    <div class="detail">
-                      <ul class="name">
-                        <li>体检科室：{{result.deptName}}</li>
-                      </ul>
-                      <div class="detail-title">
-                        <div class="distance">
-                          <span style="width:190px;display:inline-block">指标</span>
-                          <span>结果</span>
-                        </div>
-                      </div>
-                      <table class="distance">
-                        <colgroup>
-                          <col width="180px"></col>
-                          <col width="180px"></col>
-                        </colgroup>
-                        {{each result.peDeptForms item}}
-                          <tr>
-                            <td>{{item.formItemName}}</td>
-                            {{if !item.formItemGroupId}}
-                              <td>{{item.formItemValue}}</td>
-                            {{/if}}
-                            {{if item.formItemGroupId}}
-                            <td>
-                            {{each item.peDeptForms itemSon}}
-                              {{if itemSon && itemSon.formItemValue}}
-                                <span>{{itemSon.formItemName}}</span>:
-                                <span>{{itemSon.formItemValue}}</span>;
-                              {{/if}}
-                            {{/each}}
-                            </td>
-                            {{/if}}
-                          </tr>
-                        {{/each}}
-                      </table> 
-                      <div class="examine">
-                        <p>
-                          <label>检查人：</label>
-                          <span>{{result.checkDoctor}}</span>
-                        </p>
-                        <p style="margin: 0 42px">
-                          <label>检查时间：</label>
-                          <span>{{result.checkDate}}</span>
-                        </p>
-                      </div>
+              {{/each}}
+              {{if cisExamResults.length > 0}}
+                <div class="result general">
+                  <div class="detail">
+                    <ul class="name">
+                      <li>体检科室：心电图</li>
+                    </ul>
+                    {{each cisExamResults result}}
+                    <p style="margin-bottom: 10px; margin-top: 15px">《{{result.peItemName}}》</p>
+                    <p>检查诊断：</p>
+                    <p>{{result.checkDiganosis}}</p>
+                    <div class="examine">
+                      <p>
+                        <label>检查人：</label>
+                        <span>{{result.checkDoctor}}</span>
+                      </p>
+                      <p style="margin: 0 42px">
+                        <label>检查时间：</label>
+                        <span>{{result.checkDate}}</span>
+                      </p>
                     </div>
+                    {{/each}}
                   </div>
-                {{/each}}
-                {{if cisExamResults.length > 0}}
-                  <div class="result general">
-                    <div class="detail">
-                      <ul class="name">
-                        <li>体检科室：心电图</li>
-                      </ul>
-                      {{each cisExamResults result}}
-                      <p style="margin-bottom: 10px; margin-top: 15px">《{{result.peItemName}}》</p>
-                      <p>检查诊断：</p>
-                      <p>{{result.checkDiganosis}}</p>
-                      <div class="examine">
-                        <p>
-                          <label>检查人：</label>
-                          <span>{{result.checkDoctor}}</span>
-                        </p>
-                        <p style="margin: 0 42px">
-                          <label>检查时间：</label>
-                          <span>{{result.checkDate}}</span>
-                        </p>
-                      </div>
-                      {{/each}}
+                </div>
+              {{/if}}
+              {{if pacsExamResults.length > 0}}
+                <div class="result general">
+                  <div class="detail">
+                    <ul class="name">
+                      <li>体检科室：放射科/超声科</li>
+                    </ul>
+                    {{each pacsExamResults result}}
+                    <p style="margin-bottom: 10px; margin-top: 15px">《{{result.peItemName}}》</p>
+                    <p style="padding-bottom: 2px">检查描述：</p>
+                    <p style="padding-bottom: 3px">{{result.checkDescription}}</p>
+                    <p style="padding-bottom: 2px">检查诊断：</p>
+                    <p>{{result.checkDiganosis}}</p>
+                    <div class="examine">
+                      <p>
+                        <label>检查人：</label>
+                        <span>{{result.checkDoctor}}</span>
+                      </p>
+                      <p style="margin: 0 42px">
+                        <label>检查时间：</label>
+                        <span>{{result.checkDate}}</span>
+                      </p>
                     </div>
+                    {{/each}}
                   </div>
-                {{/if}}
-                {{if pacsExamResults.length > 0}}
-                  <div class="result general">
-                    <div class="detail">
-                      <ul class="name">
-                        <li>体检科室：放射科/超声科</li>
-                      </ul>
-                      {{each pacsExamResults result}}
-                      <p style="margin-bottom: 10px; margin-top: 15px">《{{result.peItemName}}》</p>
-                      <p style="padding-bottom: 2px">检查描述：</p>
-                      <p style="padding-bottom: 3px">{{result.checkDescription}}</p>
-                      <p style="padding-bottom: 2px">检查诊断：</p>
-                      <p>{{result.checkDiganosis}}</p>
-                      <div class="examine">
-                        <p>
-                          <label>检查人：</label>
-                          <span>{{result.checkDoctor}}</span>
-                        </p>
-                        <p style="margin: 0 42px">
-                          <label>检查时间：</label>
-                          <span>{{result.checkDate}}</span>
-                        </p>
-                      </div>
-                      {{/each}}
-                    </div>
-                  </div>
-                {{/if}}
-                {{if libExamResult.length > 0}}
-                  <div class="result general">
-                    <div class="detail">
-                       <ul class="name">
-                         <li>体检科室：检验科</li>
-                       </ul>
-                      {{each libExamResult result}}
-                      <p style="margin-bottom: 10px; margin-top: 15px">《{{result.peItemName}}》</p>
-                      <table>
-                        <colgroup>
-                          <col width="120px"></col>
-                          <col width="120px"></col>
-                          <col width="120px"></col>
-                          <col width="120px"></col>
-                          <col width="120px"></col>
-                        </colgroup>
+                </div>
+              {{/if}}
+              {{if libExamResult.length > 0}}
+                <div class="result general">
+                  <div class="detail">
+                     <ul class="name">
+                       <li>体检科室：检验科</li>
+                     </ul>
+                    {{each libExamResult result}}
+                    <p style="margin-bottom: 10px; margin-top: 15px">《{{result.peItemName}}》</p>
+                    <table>
+                      <colgroup>
+                        <col width="120px"></col>
+                        <col width="120px"></col>
+                        <col width="120px"></col>
+                        <col width="120px"></col>
+                        <col width="120px"></col>
+                      </colgroup>
+                      <tr>
+                        <th>指标名称</th>
+                        <th>检查结果</th>
+                        <th>单位</th>
+                        <th>参考范围</th>
+                        <th>提示</th>
+                      </tr>
+                      {{each result.libExamDetail detail}}
                         <tr>
-                          <th>指标名称</th>
-                          <th>检查结果</th>
-                          <th>单位</th>
-                          <th>参考范围</th>
-                          <th>提示</th>
+                          <td>{{detail.itemName}}</td>
+                          <td>{{detail.result}}</td>
+                          <td>{{detail.unit}}</td>
+                          <td>{{detail.referenceRange}}</td>
+                          <td>{{detail.referenceResult}}</td>
                         </tr>
-                        {{each result.libExamDetail detail}}
-                          <tr>
-                            <td>{{detail.itemName}}</td>
-                            <td>{{detail.result}}</td>
-                            <td>{{detail.unit}}</td>
-                            <td>{{detail.referenceRange}}</td>
-                            <td>{{detail.referenceResult}}</td>
-                          </tr>
-                        {{/each}}
-                      </table> 
-                      <div class="examine">
-                        <p>
-                          <label>检查人：</label>
-                          <span>{{result.checkDoctor}}</span>
-                        </p>
-                        <p style="margin: 0 42px">
-                          <label>检查时间：</label>
-                          <span>{{result.checkDate}}</span>
-                        </p>
-                      </div>
                       {{/each}}
+                    </table> 
+                    <div class="examine">
+                      <p>
+                        <label>检查人：</label>
+                        <span>{{result.checkDoctor}}</span>
+                      </p>
+                      <p style="margin: 0 42px">
+                        <label>检查时间：</label>
+                        <span>{{result.checkDate}}</span>
+                      </p>
                     </div>
+                    {{/each}}
                   </div>
-                {{/if}}
-              </div>
-            </section>
+                </div>
+              {{/if}}
+            </div>
           </section>
-          <div style="text-align:right;margin-top:136px;color:#2B354A;padding-right:6mm">
-            <span style="font-size="12px;">谢谢合作，祝您健康！本体检报告仅供临床参考，不作临床诊断依据</span>
-          </div>
+        </section>
+        <div style="text-align:right;margin-top:136px;color:#2B354A;padding-right:6mm">
+          <span style="font-size="12px;">谢谢合作，祝您健康！本体检报告仅供临床参考，不作临床诊断依据</span>
         </div>
-        </div>
+      </div>
+    </div>    
   </script>
 
   <script src="./LodopFuncs.js"></script>
