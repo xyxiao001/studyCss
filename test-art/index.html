@@ -12,6 +12,8 @@
   <div id="test"></div>
   <a href="javascript:preview1()">打印</a>
   <div id="test2"></div>
+  <div id="test3"></div>
+
   <script src="https://unpkg.com/art-template@4.13.1/lib/template-web.js"></script>
   <script id="tpl-user" type="text/html">
     {{if user}}
@@ -108,7 +110,7 @@
         }
 
         .overview .footer {
-          margin-top: 100px;
+          margin-top: 35pt;
           padding-bottom: 5px;
           border-bottom: 1px dashed #000;
           width: 200mm;
@@ -859,6 +861,7 @@
       
       let branchData = template('branchRender', data)
       branchData = branchData.replace(/&#60;br \/&#62;/g, '<br />')
+      document.getElementById('test3').innerHTML = branchData
       lodop.ADD_PRINT_HTM('25mm', 0, 'BottomMargin:2mm', 'BottomMargin: 9%', branchData);
       // 页码显示
       lodop.ADD_PRINT_HTM(1085, 320, 300, 100, "<div style='font-size:10pt; color:gray;'>——  <span tdata='pageNo-2'>第##页</span>/<span tdata='pageCount-2'>共##页</span>  ——</div>");
