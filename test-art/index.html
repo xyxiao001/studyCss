@@ -89,6 +89,7 @@
           padding-left: 17px;
           margin-bottom: 5px;
           border-bottom: solid 1px #D8E7EF;
+          line-height: 30px;
         }
 
         .overview .result .exception {
@@ -182,7 +183,7 @@
         }
         .cover{
           width: 210mm;
-          height: 268mm;
+          height: 248mm;
           position: relative;
         }
         .cover .header{
@@ -796,7 +797,7 @@
   </script>
 
   <script src="./LodopFuncs.js"></script>
-  <script src="./test3.js"></script>
+  <script src="./test2.js"></script>
 
   <script type="text/javascript">
     // 打印
@@ -834,40 +835,37 @@
       lodop.ADD_PRINT_HTM(0, 0, '100%', '100%', headerHtml);
       lodop.SET_PRINT_STYLEA(0, 'ItemType', 1);// 设置页眉页脚
       lodop.SET_PRINT_STYLEA(0, 'Horient', 3);
-      lodop.SET_PRINT_STYLEA(0, 'PageUnIndex', ['1', '2']);// 1页、2页不输出，排除法。
+      lodop.SET_PRINT_STYLEA(0, 'PageUnIndex', ['1', '2']);// 1页不输出，排除法。
 
       lodop.SET_PRINT_MODE('PRINT_DUPLEX', 2);
       innerHtml = innerHtml.replace(/&#60;br \/&#62;/g, '<br />')
-      lodop.ADD_PRINT_HTM('25mm', 0, 'BottomMargin:2mm', 'BottomMargin:15mm', innerHtml);
+      lodop.ADD_PRINT_HTM('25mm', 0, 'BottomMargin:2mm', 'BottomMargin:0mm', innerHtml);
       lodop.NEWPAGEA();
 
       // 里面的数据渲染
       var totalRender = template('test-print', data);
       totalRender = totalRender.replace(/&#60;br \/&#62;/g, '<br />')
-      lodop.ADD_PRINT_HTM('25mm', 0, 'BottomMargin:2mm', 'BottomMargin:15mm', totalRender);
+      lodop.ADD_PRINT_HTM('25mm', 0, 'BottomMargin:2mm', 'BottomMargin: 9%', totalRender);
       lodop.NEWPAGEA();
       document.getElementById('test2').innerHTML = totalRender
       
       let branchData = template('branchRender', data)
       branchData = branchData.replace(/&#60;br \/&#62;/g, '<br />')
-      lodop.ADD_PRINT_HTM('25mm', 0, 'BottomMargin:2mm', 'BottomMargin:15mm', branchData);
+      lodop.ADD_PRINT_HTM('25mm', 0, 'BottomMargin:2mm', 'BottomMargin: 9%', branchData);
       // 页码显示
-      lodop.ADD_PRINT_HTM(1085, 320, 300, 100, "<div style='font-size:14px; color:gray;'>——  <span tdata='pageNo-2'>第##页</span>/<span tdata='pageCount-2'>共##页</span>  ——</div>");
+      lodop.ADD_PRINT_HTM(1085, 320, 300, 100, "<div style='font-size:10pt; color:gray;'>——  <span tdata='pageNo-2'>第##页</span>/<span tdata='pageCount-2'>共##页</span>  ——</div>");
       lodop.SET_PRINT_STYLEA(0, 'ItemType', 1);// 设置页眉页脚
       lodop.SET_PRINT_STYLEA(0, 'Horient', 3);
-      lodop.SET_PRINT_STYLEA(0, 'PageUnIndex', ['1', '2']);// 1页、2页不输出，排除法。
-      
-      lodop.SET_PRINT_MODE('POS_BASEON_PAPER', true);
-      lodop.SET_PRINT_MODE('CATCH_PRINT_STATUS', true);
-      
-
+      lodop.SET_PRINT_STYLEA(0, 'PageUnIndex', ['1', '2']);// 1页不输出，排除法。
     }
 
     setTimeout(function () {
       lodop = getLodop()
+      lodop.SET_PRINT_MODE('POS_BASEON_PAPER', true);
+      // lodop.SET_PRINT_MODE('CATCH_PRINT_STATUS', true);
       checked()
-    }, 200)
+    }, 500);
   </script>
 </body>
 
-</html>
+</html>`
