@@ -98,7 +98,7 @@
           display: inline-block;
           width: 100%;
           height: 1px;
-          background: #D8E7EF;;
+          background: #D8E7EF;
         }
 
         .overview .result .exception {
@@ -110,10 +110,16 @@
         }
 
         .overview .footer {
-          margin-top: 35pt;
+          margin-top: 20pt;
           padding-bottom: 5px;
-          border-bottom: 1px dashed #000;
           width: 200mm;
+        }
+
+        .overview .footer .line {
+          display: inline-block;
+          width: 100%;
+          height: 1px;
+          border-bottom: 1px dashed #000;
         }
 
         .overview .footer .sign {
@@ -168,6 +174,7 @@
                   <label>总检日期：{{sumDiagnosis.gmtCreatedStr}}</label>
                 </p>
               </div>
+              <span class="line"></span>
             </div>
           </section>
           {{/if}}
@@ -322,9 +329,8 @@
           margin-bottom: 2px;
         }
         .overview .footer{
-          margin-top: 100px;
+          margin-top: 80px;
           padding-bottom: 5px;
-          border-bottom: 1px dashed #000;
           width: 200mm;
         }
         .overview .footer .sign {
@@ -335,6 +341,14 @@
           float: left;
           width: 33%;
         }
+
+        .overview .footer .line {
+          display: inline-block;
+          width: 100%;
+          height: 1px;
+          border-bottom: 1px dashed #000;
+        }
+
         .dept{ 
           width: 200mm;
           padding: 0mm 5mm;
@@ -547,12 +561,20 @@
         .dept .examine{
           margin: 8pt 0;
           padding: 5pt 0px;
-          border-bottom: 1px dashed #000;
+          /* border-bottom: 1px dashed #000; */
           text-align: right;
         }
         .dept .examine p{
           display: inline-block;
         }
+
+        .dept .examine .line {
+          display: inline-block;
+          width: 100%;
+          height: 2pt;
+          border-bottom: 1px dashed #000;
+        }
+
         .detail .detail-title{
           height: 26pt;
           line-height: 22pt;
@@ -561,6 +583,10 @@
         }
         .detail .distance{
           margin-left: 15pt;
+        }
+
+        .detail .item-name {
+          line-height: 40px;
         }
       </style>
       <div class="main">
@@ -695,6 +721,7 @@
                         <label>检查时间：</label>
                         <span>{{result.checkDate}}</span>
                       </p>
+                      <span class="line"></span>
                     </div>
                   </div>
                 </div>
@@ -706,7 +733,7 @@
                       <li>体检科室：心电图</li>
                     </ul>
                     {{each cisExamResults result}}
-                    <p style="margin-bottom: 10px; margin-top: 15px">《{{result.peItemName}}》</p>
+                    <p class="item-name">《{{result.peItemName}}》</p>
                     <p>检查诊断：</p>
                     <p>{{result.checkDiganosis}}</p>
                     <div class="examine">
@@ -718,6 +745,7 @@
                         <label>检查时间：</label>
                         <span>{{result.checkDate}}</span>
                       </p>
+                      <span class="line"></span>
                     </div>
                     {{/each}}
                   </div>
@@ -730,7 +758,7 @@
                       <li>体检科室：放射科/超声科</li>
                     </ul>
                     {{each pacsExamResults result}}
-                    <p style="margin-bottom: 10px; margin-top: 15px">《{{result.peItemName}}》</p>
+                    <p class="item-name">《{{result.peItemName}}》</p>
                     <p style="padding-bottom: 2px">检查描述：</p>
                     <p style="padding-bottom: 3px">{{result.checkDescription}}</p>
                     <p style="padding-bottom: 2px">检查诊断：</p>
@@ -744,6 +772,7 @@
                         <label>检查时间：</label>
                         <span>{{result.checkDate}}</span>
                       </p>
+                      <span class="line"></span>
                     </div>
                     {{/each}}
                   </div>
@@ -756,7 +785,7 @@
                        <li>体检科室：检验科</li>
                      </ul>
                     {{each libExamResult result}}
-                    <p style="margin-bottom: 10px; margin-top: 15px">《{{result.peItemName}}》</p>
+                    <p class="item-name">《{{result.peItemName}}》</p>
                     <table>
                       <colgroup>
                         <col width="120px"></col>
@@ -791,6 +820,7 @@
                         <label>检查时间：</label>
                         <span>{{result.checkDate}}</span>
                       </p>
+                      <span class="line"></span>
                     </div>
                     {{/each}}
                   </div>
@@ -799,7 +829,7 @@
             </div>
           </section>
         </section>
-        <div style="text-align:right;margin-top:136px;color:#2B354A;padding-right:6mm">
+        <div style="text-align:right;margin-top:60pt;color:#2B354A;padding-right:6mm">
           <span style="font-size="12px;">谢谢合作，祝您健康！本体检报告仅供临床参考，不作临床诊断依据</span>
         </div>
       </div>
@@ -807,7 +837,7 @@
   </script>
 
   <script src="./LodopFuncs.js"></script>
-  <script src="./test4.js"></script>
+  <script src="./test5.js"></script>
 
   <script type="text/javascript">
     // 打印
@@ -855,14 +885,14 @@
       // 里面的数据渲染
       var totalRender = template('test-print', data);
       totalRender = totalRender.replace(/&#60;br \/&#62;/g, '<br />')
-      lodop.ADD_PRINT_HTM('25mm', 0, 'BottomMargin:2mm', 'BottomMargin: 9%', totalRender);
+      lodop.ADD_PRINT_HTM('25mm', 0, 'BottomMargin:2mm', 'BottomMargin: 65px', totalRender);
       lodop.NEWPAGEA();
       document.getElementById('test2').innerHTML = totalRender
       
-      let branchData = template('branchRender', data)
+      let branchData = template('branchRender', data)   
       branchData = branchData.replace(/&#60;br \/&#62;/g, '<br />')
       document.getElementById('test3').innerHTML = branchData
-      lodop.ADD_PRINT_HTM('25mm', 0, 'BottomMargin:2mm', 'BottomMargin: 9%', branchData);
+      lodop.ADD_PRINT_HTM('25mm', 0, 'BottomMargin:2mm', 'BottomMargin: 65px', branchData);
       // 页码显示
       lodop.ADD_PRINT_HTM(1085, 320, 300, 100, "<div style='font-size:10pt; color:gray;'>——  <span tdata='pageNo-2'>第##页</span>/<span tdata='pageCount-2'>共##页</span>  ——</div>");
       lodop.SET_PRINT_STYLEA(0, 'ItemType', 1);// 设置页眉页脚
