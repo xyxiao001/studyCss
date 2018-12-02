@@ -1,3 +1,4 @@
+// 图片信息接口
 interface Imginfo {
   img: string
   dom: HTMLImageElement
@@ -5,6 +6,7 @@ interface Imginfo {
   height: number
   type: string
 }
+
 
 const addImg = (img: string):Promise<Imginfo> => {
   const imgDom = new Image
