@@ -49,9 +49,13 @@ const uploadImg = (e:any) => {
     let data;
     data = window.URL.createObjectURL(new Blob([e.target.result]));
     let img1:HTMLImageElement = document.querySelector('#img1')
-    img1.src = data
+    if (img1) {
+      img1.src = data
+    }
     let img2: HTMLImageElement = document.querySelector('#img2')
-    img2.src = data
+    if (img2) {
+      img2.src = data
+    }
     show(data)
   };
   // 转化为base64

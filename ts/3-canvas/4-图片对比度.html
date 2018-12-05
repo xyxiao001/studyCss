@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>图片对比度</title>
+</head>
+<style>
+  main {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+  }
+
+  main > section {
+    padding: 30px 30px
+  }
+  img {
+    max-width: 800px;
+  }
+
+  canvas {
+    max-width: 800px;
+  }
+
+  #img2 {
+  }
+
+  .upload {
+    width: 100%;
+  }
+</style>
+
+<body>
+  <main>
+    <section>
+      <p>原图</p>
+      <img src="http://cdn.xyxiao.cn/bg10.jpg" id="img1" alt="">
+    </section>
+
+    <section class="contrast-photo">
+      <p>图片对比度</p>
+      <section class="img"></section>
+    </section>
+
+    <section class="upload">
+      <input type="file" id="file">
+    </section>
+  </main>
+  <script src="dist/common.js"></script>
+  <script src="dist/4.js"></script>
+</body>
+
+</html>
