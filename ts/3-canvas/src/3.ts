@@ -33,7 +33,6 @@
   let gray:number = 0;
   // 微软算法  简单的灰度除以3
   let i = 0;
-  console.log(weiData);
   while (i < obj.width * obj.height * 4) {
     const r:number = weiData.data[i]
     const g:number = weiData.data[i + 1]

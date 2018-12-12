@@ -31,7 +31,6 @@ const oldPhoto = (obj) => {
     let gray = 0;
     // 微软算法  简单的灰度除以3
     let i = 0;
-    console.log(weiData);
     while (i < obj.width * obj.height * 4) {
         const r = weiData.data[i];
         const g = weiData.data[i + 1];
