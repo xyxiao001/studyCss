@@ -50,4 +50,9 @@ const uploadImg = (e) => {
     // 转化为blob
     reader.readAsArrayBuffer(file);
 };
+const initWorker = (func) => {
+    const blob = new Blob([`(function () {${func}}())`]);
+    const url = window.URL.createObjectURL(blob);
+    return new Worker(url);
+};
 document.querySelector('#file').addEventListener('change', uploadImg);

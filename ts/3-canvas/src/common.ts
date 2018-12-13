@@ -64,4 +64,10 @@ const uploadImg = (e:any) => {
   reader.readAsArrayBuffer(file);
 }
 
+const initWorker = (func: string) => {
+  const blob = new Blob([`(function () {${func}}())`])
+  const url = window.URL.createObjectURL(blob)
+  return new Worker(url)
+}
+
 document.querySelector('#file').addEventListener('change', uploadImg);

@@ -23,7 +23,6 @@ const contrastRadio = (obj) => {
     // 获取图片的像素点 rgba
     let weiData = ctx.getImageData(0, 0, obj.width, obj.height);
     let i = 0;
-    console.log(weiData);
     while (i < obj.width * obj.height * 4) {
         const r = weiData.data[i];
         const g = weiData.data[i + 1];
