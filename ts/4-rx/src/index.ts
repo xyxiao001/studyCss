@@ -1,5 +1,5 @@
 import * as rxjs from 'rxjs';
-import { scan, throttleTime, map } from 'rxjs/operators';
+import { scan, throttleTime, map, multicast } from 'rxjs/operators';
 
 console.log(rxjs)
 
@@ -68,3 +68,20 @@ observable.subscribe({
 });
 // 订阅之后
 console.log('订阅之后')
+
+// 每个 Subject 都是观察者
+const subject = new rxjs.Subject()
+subject.subscribe({
+  next: (v) => console.log(`observe1 ${v}`)
+})
+
+subject.subscribe({
+  next: (v) => console.log(`observe2 ${v}`)
+})
+
+// subject.next(1)
+// subject.next(2)
+
+const observable2 = rxjs.from([1, 2, 3])
+
+observable2.subscribe(subject)
