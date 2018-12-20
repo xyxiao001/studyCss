@@ -2,13 +2,14 @@
 import random
 import time
 print("正在生成随机数组...")
-arr = random.sample(range(1, 300000), 5000)
+arr = random.sample(range(1, 300000), 10000)
 # arr = [5, 3]
 print("随机数组生成成功！一共%d个"%(len(arr)))
 
 # 插入排序
 def insertSort(list):
   # print(list)
+  # print("-------\n\n\n")
   arr = list
   j = 1
   while j < len(arr):
