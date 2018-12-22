@@ -10,7 +10,7 @@ func main() {
 	var arr []int
 	// 生成随机数
 	fmt.Print("正在生成随机数组...\n")
-	sum := 10000
+	sum := 100000
 	r := rand.New(rand.NewSource(time.Now().UnixNano()))
 	for index := 0; index < sum; index++ {
 		// 因为slice 是一个引用类似，支持自动扩容，切片扩容以后地址也发生了改变，所以我们要重新赋值给这个变量
@@ -62,7 +62,7 @@ func insertSort(list []int) {
 // 分解原问题为若干子问题
 // 分别求解
 // 然后合并
-func merge(list []int, p int, q int, r int) []int {
+func merge(list []int, p int, q int, r int) {
 	// fmt.Print(list, "\n")
 	// 分别生成两个已经排好序的切片
 	arr1 := make([]int, q-p+1)
@@ -86,7 +86,6 @@ func merge(list []int, p int, q int, r int) []int {
 			j++
 		}
 	}
-	return list
 }
 
 // 归并排序
