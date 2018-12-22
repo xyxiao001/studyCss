@@ -10,28 +10,32 @@ func main() {
 	var arr []int
 	// 生成随机数
 	fmt.Print("正在生成随机数组...\n")
-	sum := 10
+	sum := 10000
 	r := rand.New(rand.NewSource(time.Now().UnixNano()))
 	for index := 0; index < sum; index++ {
 		// 因为slice 是一个引用类似，支持自动扩容，切片扩容以后地址也发生了改变，所以我们要重新赋值给这个变量
-		arr = append(arr, r.Intn(300))
+		arr = append(arr, r.Intn(30000000))
 	}
 	start := time.Now().UTC().UnixNano() / 1e6
 	fmt.Print(fmt.Sprintf("生成随机数组成功! 一共%d位\n", len(arr)))
-	// 执行排序
+	// 插入排序
 	// insertSort(arr)
 
+	// 归并排序
+	mergeSort(arr, 0, len(arr)-1)
+
 	end := time.Now().UTC().UnixNano() / 1e6
-	fmt.Print(fmt.Sprintf("插入排序成功, 花费时间%dms!\n", end-start))
+	// fmt.Print(fmt.Sprintf("插入排序成功, 花费时间%dms!\n", end-start))
+	fmt.Print(fmt.Sprintf("归并排序成功, 花费时间%dms!\n", end-start))
 
 	// list2 := []int{2, 4, 6, 8, 10, 1, 3, 5, 7, 9}
 	// fmt.Print("测试合并两个位置已经排好序的数组！\n")
 	// fmt.Print(merge(list2, 0, 4, 9), "\n")
 
-	fmt.Print(fmt.Sprintf("\n归并排序成功, 花费时间%dms!\n", 1))
-	fmt.Print(arr, "\n")
-	mergeSort(arr, 0, len(arr)-1)
-	fmt.Print(arr, "\n")
+	// fmt.Print(fmt.Sprintf("\n归并排序成功, 花费时间%dms!\n", 1))
+	// fmt.Print(arr, "\n")
+	// mergeSort(arr, 0, len(arr)-1)
+	// fmt.Print(arr, "\n")
 }
 
 func insertSort(list []int) {
