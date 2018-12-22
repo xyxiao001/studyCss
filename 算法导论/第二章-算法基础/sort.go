@@ -19,14 +19,19 @@ func main() {
 	start := time.Now().UTC().UnixNano() / 1e6
 	fmt.Print(fmt.Sprintf("生成随机数组成功! 一共%d位\n", len(arr)))
 	// 执行排序
-	insertSort(arr)
+	// insertSort(arr)
 
 	end := time.Now().UTC().UnixNano() / 1e6
 	fmt.Print(fmt.Sprintf("插入排序成功, 花费时间%dms!\n", end-start))
 
-	list2 := []int{2, 3, 4, 5, 7, 1, 2, 3, 6}
-	fmt.Print("测试合并两个位置已经排好序的数组！\n")
-	merge(list2, 0, 4, 8)
+	// list2 := []int{2, 4, 6, 8, 10, 1, 3, 5, 7, 9}
+	// fmt.Print("测试合并两个位置已经排好序的数组！\n")
+	// fmt.Print(merge(list2, 0, 4, 9), "\n")
+
+	fmt.Print(fmt.Sprintf("\n归并排序成功, 花费时间%dms!\n", 1))
+	fmt.Print(arr, "\n")
+	mergeSort(arr, 0, len(arr)-1)
+	fmt.Print(arr, "\n")
 }
 
 func insertSort(list []int) {
@@ -53,6 +58,39 @@ func insertSort(list []int) {
 // 分解原问题为若干子问题
 // 分别求解
 // 然后合并
-func merge(list []int, p int, q int, r int) {
-	fmt.Print(list, p, q, r)
+func merge(list []int, p int, q int, r int) []int {
+	// fmt.Print(list, "\n")
+	// 分别生成两个已经排好序的切片
+	arr1 := make([]int, q-p+1)
+	arr2 := make([]int, r-q)
+
+	arr := list[p : q+1]
+	copy(arr1, arr)
+	arr = list[q+1 : r+1]
+	copy(arr2, arr)
+	// 添加哨兵变量 无穷大的值
+	arr1 = append(arr1, 1000000000)
+	arr2 = append(arr2, 1000000000)
+	i := 0
+	j := 0
+	for k := p; k <= r; k++ {
+		if arr1[i] <= arr2[j] {
+			list[k] = arr1[i]
+			i++
+		} else {
+			list[k] = arr2[j]
+			j++
+		}
+	}
+	return list
+}
+
+// 归并排序
+func mergeSort(list []int, p int, r int) {
+	if p < r {
+		q := int(p+r) / 2
+		mergeSort(list, p, q)
+		mergeSort(list, q+1, r)
+		merge(list, p, q, r)
+	}
 }
