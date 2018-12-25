@@ -19,14 +19,14 @@ func main() {
 	start := time.Now().UTC().UnixNano() / 1e6
 	fmt.Print(fmt.Sprintf("生成随机数组成功! 一共%d位\n", len(arr)))
 	// 插入排序
-	// insertSort(arr)
+	insertSort(arr)
 
 	// 归并排序
-	mergeSort(arr, 0, len(arr)-1)
+	// mergeSort(arr, 0, len(arr)-1)
 
 	end := time.Now().UTC().UnixNano() / 1e6
-	// fmt.Print(fmt.Sprintf("插入排序成功, 花费时间%dms!\n", end-start))
-	fmt.Print(fmt.Sprintf("归并排序成功, 花费时间%dms!\n", end-start))
+	fmt.Print(fmt.Sprintf("插入排序成功, 花费时间%dms!\n", end-start))
+	// fmt.Print(fmt.Sprintf("归并排序成功, 花费时间%dms!\n", end-start))
 
 	// list2 := []int{2, 4, 6, 8, 10, 1, 3, 5, 7, 9}
 	// fmt.Print("测试合并两个位置已经排好序的数组！\n")
@@ -38,6 +38,7 @@ func main() {
 	// fmt.Print(arr, "\n")
 }
 
+// 插入排序  时间复杂度 Tn = n²
 func insertSort(list []int) {
 	// fmt.Print("\n")
 	// fmt.Print(list)
@@ -88,7 +89,7 @@ func merge(list []int, p int, q int, r int) {
 	}
 }
 
-// 归并排序
+// 归并排序 Tn = nlog2(n);
 func mergeSort(list []int, p int, r int) {
 	if p < r {
 		q := int(p+r) / 2

@@ -6,8 +6,8 @@ const {
 // 插入算法
 
 const arr = []
-const sum = 10000
-const total = 300000
+const sum = 100000
+const total = 300000000
 
 console.log('随机数组生成中....')
 for (let i = 0; i < sum; i++) {

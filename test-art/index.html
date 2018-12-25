@@ -6,6 +6,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>test art</title>
+  <style type="text/css">
+    canvas {
+      width: 1000px;
+    }
+  </style>
 </head>
 
 <body>
@@ -13,8 +18,12 @@
   <a href="javascript:preview1()">打印</a>
   <div id="test2"></div>
   <div id="test3"></div>
-
+  <div id="test4"></div>
+  <h1>PDF.js 'Hello, world!' example</h1>
+  <canvas id="the-canvas"></canvas>
   <script src="https://unpkg.com/art-template@4.13.1/lib/template-web.js"></script>
+  <script src="https://cdn.bootcss.com/pdf.js/2.0.943/pdf.min.js"></script>
+  <script src="https://cdn.bootcss.com/pdf.js/2.0.943/pdf.worker.js"></script>
   <script id="tpl-user" type="text/html">
     {{if user}}
     <p>{{user.name}}</p>
@@ -836,6 +845,19 @@
     </div>    
   </script>
 
+  <script id="pdfRender" type="text/html">
+    <div>
+      <style>
+       .main img {
+        }
+      </style>
+      <div class="main">
+        <p>测试pdf图片</p>
+        <img src="{{url}}" alt="">
+      </div>
+    </div>
+  </script>
+
   <script src="./LodopFuncs.js"></script>
   <script src="./test5.js"></script>
 
@@ -858,6 +880,11 @@
       let data = JSON.stringify(testJson.data)
       data = data.replace(/\r?\\n/g, '<br />')
       data = JSON.parse(data)
+
+      LODOP.ADD_PRINT_IMAGE(30, 30, '100%', 'BottomMargin:2mm',`<img border='0' src='${imgUrl}' />`);
+		  LODOP.SET_PRINT_STYLEA(0,"Stretch", 1);//按原图比例(不变形)缩放模式
+      lodop.NEWPAGEA();
+
 
       const headerField = ['serialNum', 'patientName', 'patientPeDate', 'patientSex', 'patientAge'];
       let innerHtml = template('render', data)
@@ -893,6 +920,14 @@
       branchData = branchData.replace(/&#60;br \/&#62;/g, '<br />')
       document.getElementById('test3').innerHTML = branchData
       lodop.ADD_PRINT_HTM('25mm', 0, 'BottomMargin:2mm', 'BottomMargin: 65px', branchData);
+
+      // let pdfData = template('pdfRender', {
+      //   url: imgUrl
+      // })
+      // document.getElementById('test4').innerHTML = pdfData
+      // lodop.ADD_PRINT_HTM('25mm', 0, 'BottomMargin:2mm', 'BottomMargin: 65px', pdfData);
+
+
       // 页码显示
       lodop.ADD_PRINT_HTM(1085, 320, 300, 100, "<div style='font-size:10pt; color:gray;'>——  <span tdata='pageNo-2'>第##页</span>/<span tdata='pageCount-2'>共##页</span>  ——</div>");
       lodop.SET_PRINT_STYLEA(0, 'ItemType', 1);// 设置页眉页脚
@@ -906,6 +941,50 @@
       // lodop.SET_PRINT_MODE('CATCH_PRINT_STATUS', true);
       checked()
     }, 500);
+  
+    // pdf打印
+    // If absolute URL from the remote server is provided, configure the CORS
+// header on that server.
+var imgUrl = ''
+var url = 'https://kano-medical.guahao.cn/U3P57743535?token=V1.0_dlZrTW9rWkJEUzBVcGF2ZHlsWGI0QT09X1RJTUVfQUVTCOUSTOM';
+
+// Loaded via <script> tag, create shortcut to access PDF.js exports.
+var pdfjsLib = window['pdfjs-dist/build/pdf'];
+
+  // Asynchronous download of PDF
+  var loadingTask = pdfjsLib.getDocument(url);
+  loadingTask.promise.then(function(pdf) {
+    console.log('PDF loaded');
+    
+    // Fetch the first page
+    var pageNumber = 1;
+    pdf.getPage(pageNumber).then(function(page) {
+      console.log('Page loaded');
+      
+      var scale = 4;
+      var viewport = page.getViewport(scale);
+
+      // Prepare canvas using PDF page dimensions
+      var canvas = document.getElementById('the-canvas');
+      var context = canvas.getContext('2d');
+      canvas.height = viewport.height;
+      canvas.width = viewport.width;
+
+      // Render PDF page into canvas context
+      var renderContext = {
+        canvasContext: context,
+        viewport: viewport
+      };
+      var renderTask = page.render(renderContext);
+      renderTask.then(function () {
+        imgUrl = dataURL=canvas.toDataURL('image/png')
+        console.log('Page rendered');
+      });
+    });
+  }, function (reason) {
+    // PDF loading error
+    console.error(reason);
+  });
   </script>
 </body>
 
